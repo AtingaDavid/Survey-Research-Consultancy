@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="description" content="David Atinga — Survey Research Consultancy specialising in World Bank Survey Solutions design, implementation, and CAWI/CAPI data collection across Africa."/>
+<meta property="og:title" content="Atinga Survey Research | Survey Solutions Consultancy"/>
+<meta property="og:description" content="Professional survey research implementation using World Bank Survey Solutions. CAPI · CAWI · GPS · Data Analysis · GEE Climate Data."/>
+<meta property="og:url" content="https://davidatinga.netlify.app/survey"/>
+<meta property="og:type" content="website"/>
+<title>Atinga Survey Research | Survey Solutions Consultancy</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..60,200..800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+<style>
+/* ── TOKENS ─────────────────────────────────────────────────────── */
+:root {
+  --bg:       #F3F6F9;
+  --bg2:      #FFFFFF;
+  --surface:  #E8EDF3;
+  --rule:     #C8D4DF;
+  --ink:      #0E1C2B;
+  --muted:    #4A607A;
+  --light:    #8099B3;
+  --navy:     #0D2B4E;
+  --navy2:    #1A3F6E;
+  --teal:     #1A7A6E;
+  --teal2:    #22988A;
+  --amber:    #C9821A;
+  --white:    #FFFFFF;
+  --nav-bg:   rgba(243,246,249,.95);
+  --card-bg:  #FFFFFF;
+  --card-bdr: #D4DCE5;
+  --dark-panel:#0D2B4E;
+  --shadow:   0 4px 24px rgba(13,43,78,.09);
+  --shadow-lg:0 12px 48px rgba(13,43,78,.14);
+  --toggle-bg:#C8D4DF;
+  --toggle-k: #0D2B4E;
+}
+[data-theme="dark"] {
+  --bg:       #0A1220;
+  --bg2:      #0A1220;
+  --surface:  #111C2C;
+  --rule:     #1E2D40;
+  --ink:      #E8EFF8;
+  --muted:    #7E9AB8;
+  --light:    #4A607A;
+  --navy:     #5BA4E0;
+  --navy2:    #7ABCF5;
+  --teal:     #2DC0B0;
+  --teal2:    #3DDACB;
+  --amber:    #E8A030;
+  --nav-bg:   rgba(10,18,32,.97);
+  --card-bg:  #111C2C;
+  --card-bdr: #1E2D40;
+  --dark-panel:#050D1A;
+  --shadow:   0 4px 28px rgba(0,0,0,.5);
+  --shadow-lg:0 12px 52px rgba(0,0,0,.6);
+  --toggle-bg:#1E2D40;
+  --toggle-k: #E8A030;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;
+  font-weight:300;line-height:1.72;overflow-x:hidden;transition:background .35s,color .35s}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--surface)}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:3px}
+::selection{background:var(--navy);color:#fff}
+
+/* ── NAV ─────────────────────────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:62px;
+  background:var(--nav-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);display:flex;align-items:center;
+  transition:background .35s,border-color .35s}
+.nav-inner{max-width:1160px;margin:0 auto;padding:0 32px;
+  display:flex;align-items:center;justify-content:space-between;width:100%}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-brand-mark{width:28px;height:28px;border-radius:5px;background:var(--navy);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-brand-mark svg{width:14px;height:14px;fill:#fff}
+.nav-brand-text{font-family:'Bricolage Grotesque',sans-serif;font-size:1rem;
+  color:var(--navy);letter-spacing:.01em;font-weight:600;transition:color .2s}
+.nav-links{display:flex;gap:26px;list-style:none;align-items:center}
+.nav-links a{font-size:.78rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--navy)}
+.nav-cta{background:var(--navy);color:#fff!important;padding:7px 18px;
+  border-radius:4px!important;transition:background .2s!important}
+.nav-cta:hover{background:var(--navy2)!important;color:#fff!important}
+
+.theme-toggle{display:flex;align-items:center;gap:7px;cursor:pointer;padding:4px;
+  background:none;border:none;font-size:.72rem;font-family:'JetBrains Mono',monospace;
+  color:var(--muted);letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+.theme-toggle:hover{color:var(--navy)}
+.toggle-track{width:34px;height:18px;border-radius:9px;background:var(--toggle-bg);
+  position:relative;transition:background .3s;flex-shrink:0}
+.toggle-knob{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
+  background:var(--toggle-k);transition:transform .3s,background .3s}
+[data-theme="dark"] .toggle-knob{transform:translateX(16px)}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;
+  background:none;border:none}
+.hamburger span{width:22px;height:2px;background:var(--navy);transition:.3s;display:block}
+.mobile-menu{display:none;position:fixed;top:62px;left:0;right:0;z-index:99;
+  background:var(--bg);border-bottom:1px solid var(--rule);
+  padding:24px 32px;flex-direction:column;gap:18px;transition:background .35s}
+.mobile-menu a{font-size:.95rem;font-weight:500;color:var(--ink);text-decoration:none;
+  padding:8px 0;border-bottom:1px solid var(--surface)}
+.mobile-menu.open{display:flex}
+
+/* ── HERO ────────────────────────────────────────────────────────── */
+#hero{min-height:100vh;display:grid;grid-template-columns:52fr 48fr;
+  padding-top:62px;overflow:hidden;position:relative}
+.hero-left{display:flex;flex-direction:column;justify-content:center;
+  padding:80px 64px 80px 52px;position:relative;z-index:2}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+  opacity:0;animation:fadeUp .6s .1s ease forwards}
+.hero-eyebrow::before{content:'';width:32px;height:2px;background:var(--amber);flex-shrink:0}
+.hero-headline{font-family:'Bricolage Grotesque',sans-serif;
+  font-size:clamp(2.6rem,4.2vw,4rem);line-height:1.06;color:var(--navy);
+  margin-bottom:14px;
+  opacity:0;animation:fadeUp .7s .22s ease forwards}
+.hero-headline em{font-style:italic;color:var(--teal)}
+.hero-rule{width:44px;height:3px;background:var(--amber);border-radius:2px;margin:14px 0 20px;
+  opacity:0;animation:fadeUp .6s .3s ease forwards}
+.hero-sub{font-size:.97rem;color:var(--muted);line-height:1.75;max-width:480px;margin-bottom:36px;
+  opacity:0;animation:fadeUp .7s .38s ease forwards}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px;
+  opacity:0;animation:fadeUp .7s .48s ease forwards}
+.htag{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.06em;
+  padding:4px 12px;border-radius:100px;border:1px solid var(--rule);
+  color:var(--muted);background:var(--surface);transition:background .3s,color .3s}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .7s .56s ease forwards}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;
+  padding:13px 28px;border-radius:4px;font-size:.85rem;font-weight:500;letter-spacing:.04em;
+  text-decoration:none;transition:background .25s,transform .2s;border:none;cursor:pointer}
+.btn-p:hover{background:var(--navy2);transform:translateY(-1px)}
+.btn-o{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--navy);
+  color:var(--navy);padding:12px 24px;border-radius:4px;font-size:.85rem;font-weight:500;
+  letter-spacing:.04em;text-decoration:none;transition:all .25s;background:transparent;cursor:pointer}
+.btn-o:hover{background:var(--navy);color:#fff;transform:translateY(-1px)}
+.btn-t{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--teal);
+  color:var(--teal);padding:12px 24px;border-radius:4px;font-size:.85rem;font-weight:500;
+  letter-spacing:.04em;text-decoration:none;transition:all .25s;background:transparent;cursor:pointer}
+.btn-t:hover{background:var(--teal);color:#fff;transform:translateY(-1px)}
+
+/* Hero right — navy panel */
+.hero-right{background:var(--dark-panel);display:flex;flex-direction:column;
+  justify-content:center;padding:64px 52px;position:relative;overflow:hidden;
+  transition:background .35s}
+.hero-right::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 20% 80%,rgba(26,122,110,.12) 0%,transparent 55%),
+             radial-gradient(ellipse at 80% 10%,rgba(201,130,26,.08) 0%,transparent 50%)}
+/* Data grid — the signature element: a live paradata-style terminal */
+.terminal-wrap{position:relative;z-index:1;width:100%;max-width:440px;
+  border:1px solid rgba(255,255,255,.1);border-radius:10px;overflow:hidden;
+  box-shadow:0 24px 72px rgba(0,0,0,.5);
+  opacity:0;animation:fadeIn .9s .5s ease forwards}
+.terminal-bar{background:rgba(255,255,255,.06);padding:11px 16px;
+  display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.08)}
+.t-dot{width:10px;height:10px;border-radius:50%}
+.t-dot.r{background:#FF5F56}.t-dot.y{background:#FFBD2E}.t-dot.g{background:#27C93F}
+.terminal-title{font-family:'JetBrains Mono',monospace;font-size:.6rem;
+  letter-spacing:.1em;color:rgba(255,255,255,.3);text-transform:uppercase;margin-left:8px}
+.terminal-body{padding:20px 20px 24px;background:rgba(0,0,0,.35)}
+.t-line{font-family:'JetBrains Mono',monospace;font-size:.72rem;line-height:2.1;
+  color:rgba(255,255,255,.55);display:flex;align-items:baseline;gap:10px}
+.t-line .t-key{color:var(--teal);flex-shrink:0;min-width:120px}
+.t-line .t-val{color:rgba(255,255,255,.85)}
+.t-line .t-badge{display:inline-block;padding:1px 8px;border-radius:3px;font-size:.6rem;
+  letter-spacing:.06em;background:rgba(26,122,110,.3);color:var(--teal);border:1px solid rgba(26,122,110,.4)}
+.t-line .t-badge.amber{background:rgba(201,130,26,.25);color:var(--amber);border-color:rgba(201,130,26,.35)}
+.t-divider{border:none;border-top:1px solid rgba(255,255,255,.07);margin:10px 0}
+
+/* Stat pills below terminal */
+.hero-stats-row{position:relative;z-index:1;display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;
+  opacity:0;animation:fadeIn .9s .78s ease forwards}
+.hstat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
+  border-radius:6px;padding:14px 18px;text-align:center;min-width:100px;flex:1}
+.hstat-wide{width:100%;text-align:center;padding:16px 18px}
+.hstat-badge{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;
+  font-weight:500;padding:4px 11px;border-radius:3px;flex-shrink:0}
+.capi-b{background:rgba(26,122,110,.3);color:#3DDACB;border:1px solid rgba(26,122,110,.4)}
+.cawi-b{background:rgba(201,130,26,.25);color:var(--amber);border:1px solid rgba(201,130,26,.35)}
+.cati-b{background:rgba(90,140,200,.25);color:#7ABCF5;border:1px solid rgba(90,140,200,.35)}
+.gps-b{background:rgba(150,80,200,.25);color:#C09AF5;border:1px solid rgba(150,80,200,.35)}
+.hstat-n{font-family:'Bricolage Grotesque',sans-serif;font-size:1.6rem;color:#fff;line-height:1}
+.hstat-l{font-family:'JetBrains Mono',monospace;font-size:.48rem;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.36);margin-top:5px}
+
+/* ── SECTIONS ───────────────────────────────────────────────────── */
+section{padding:96px 32px}
+.container{max-width:1160px;margin:0 auto}
+.s-label{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.s-title{font-family:'Bricolage Grotesque',sans-serif;
+  font-size:clamp(1.7rem,2.8vw,2.4rem);color:var(--navy);line-height:1.15;margin-bottom:18px}
+.s-title em{font-style:italic;color:var(--teal)}
+.s-rule{width:40px;height:3px;background:var(--amber);border-radius:2px;margin:0 0 40px}
+.s-intro{font-size:.97rem;color:var(--muted);max-width:680px;line-height:1.8;margin-bottom:48px}
+
+/* ── SERVICES ───────────────────────────────────────────────────── */
+#services{background:var(--bg)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc-card{background:var(--card-bg);border:1px solid var(--card-bdr);border-radius:8px;
+  padding:32px 28px;transition:box-shadow .25s,transform .2s,border-color .2s}
+.svc-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);border-color:var(--teal)}
+.svc-icon{width:44px;height:44px;border-radius:8px;background:var(--surface);
+  display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:1.3rem}
+.svc-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.1rem;
+  color:var(--navy);margin-bottom:10px;font-weight:600}
+.svc-desc{font-size:.87rem;color:var(--muted);line-height:1.75}
+.svc-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.57rem;
+  letter-spacing:.08em;padding:3px 9px;border-radius:3px;border:1px solid var(--teal);
+  color:var(--teal);margin-top:14px}
+.svc-card.primary{background:var(--navy);border-color:var(--navy)}
+.svc-card.primary .svc-icon{background:rgba(255,255,255,.1)}
+.svc-card.primary .svc-title{color:#fff}
+.svc-card.primary .svc-desc{color:rgba(255,255,255,.62)}
+.svc-card.primary .svc-tag{border-color:var(--teal);color:var(--teal)}
+
+/* ── WHY SURVEY SOLUTIONS ────────────────────────────────────────── */
+#why{background:var(--surface)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.why-features{display:flex;flex-direction:column;gap:20px}
+.why-feat{background:var(--card-bg);border:1px solid var(--card-bdr);border-radius:7px;
+  padding:22px 22px;display:flex;gap:16px;align-items:flex-start;
+  transition:border-color .2s}
+.why-feat:hover{border-color:var(--teal)}
+.why-feat-icon{width:38px;height:38px;border-radius:7px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--navy),var(--teal));
+  display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff}
+.why-feat-title{font-family:'Bricolage Grotesque',sans-serif;font-size:.95rem;
+  color:var(--navy);margin-bottom:5px;font-weight:600}
+.why-feat-desc{font-size:.83rem;color:var(--muted);line-height:1.7}
+
+.why-panel{background:var(--dark-panel);border-radius:10px;padding:40px 36px;
+  position:relative;overflow:hidden}
+.why-panel::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 20%,rgba(26,122,110,.15) 0%,transparent 55%)}
+.why-panel-label{font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:16px;position:relative}
+.why-panel-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.5rem;
+  color:#fff;line-height:1.2;margin-bottom:18px;position:relative}
+.why-panel-title em{font-style:italic;color:var(--teal)}
+.why-panel-text{font-size:.87rem;color:rgba(255,255,255,.6);line-height:1.8;
+  margin-bottom:28px;position:relative}
+.mode-list{display:flex;flex-direction:column;gap:12px;position:relative}
+.mode-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:6px}
+.mode-badge{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;
+  font-weight:500;padding:3px 9px;border-radius:3px;flex-shrink:0;margin-top:2px}
+.mode-badge.capi{background:rgba(26,122,110,.3);color:#3DDACB;border:1px solid rgba(26,122,110,.4)}
+.mode-badge.cawi{background:rgba(201,130,26,.25);color:var(--amber);border:1px solid rgba(201,130,26,.35)}
+.mode-badge.gps{background:rgba(90,140,200,.25);color:#7ABCF5;border:1px solid rgba(90,140,200,.35)}
+.mode-text{font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.65}
+.mode-text strong{color:rgba(255,255,255,.9);font-weight:500}
+
+/* ── QUESTIONNAIRES ─────────────────────────────────────────────── */
+#questionnaires{background:var(--bg)}
+.q-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.q-card{background:var(--card-bg);border:1px solid var(--card-bdr);border-radius:8px;
+  padding:28px 24px;display:flex;flex-direction:column;gap:14px;
+  transition:box-shadow .25s,transform .2s,border-color .2s}
+.q-card:hover{box-shadow:var(--shadow);transform:translateY(-2px);border-color:var(--navy)}
+.q-standard{font-family:'JetBrains Mono',monospace;font-size:.57rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--amber);font-weight:500}
+.q-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1rem;
+  color:var(--navy);font-weight:600;line-height:1.25}
+.q-desc{font-size:.82rem;color:var(--muted);line-height:1.7;flex:1}
+.q-pills{display:flex;flex-wrap:wrap;gap:6px}
+.q-pill{font-family:'JetBrains Mono',monospace;font-size:.54rem;letter-spacing:.06em;
+  padding:2px 8px;border-radius:3px;background:var(--surface);color:var(--light);
+  border:1px solid var(--rule)}
+.q-link{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:500;
+  color:var(--teal);text-decoration:none;letter-spacing:.02em;margin-top:auto;transition:gap .2s}
+.q-link:hover{gap:10px}
+.q-link svg{width:12px;height:12px;fill:currentColor;flex-shrink:0}
+.q-note{background:var(--surface);border:1px dashed var(--rule);border-radius:7px;
+  padding:20px 24px;margin-top:24px;display:flex;align-items:flex-start;gap:14px}
+.q-note-icon{font-size:1.2rem;flex-shrink:0;margin-top:2px}
+.q-note-text{font-size:.83rem;color:var(--muted);line-height:1.7}
+.q-note-text strong{color:var(--navy)}
+
+/* ── DATA SERVICES ──────────────────────────────────────────────── */
+#data{background:var(--surface)}
+.data-two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.data-card{background:var(--card-bg);border:1px solid var(--card-bdr);border-radius:8px;padding:36px 32px}
+.data-card-icon{font-size:2rem;margin-bottom:16px}
+.data-card-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.2rem;
+  color:var(--navy);margin-bottom:10px;font-weight:600}
+.data-card-desc{font-size:.87rem;color:var(--muted);line-height:1.8;margin-bottom:20px}
+.data-tags{display:flex;flex-wrap:wrap;gap:7px}
+.dtag{font-size:.72rem;padding:4px 11px;border-radius:100px;background:var(--surface);
+  color:var(--muted);border:1px solid var(--rule)}
+
+/* ── INQUIRY ────────────────────────────────────────────────────── */
+#inquiry{background:var(--bg)}
+.inquiry-wrap{display:grid;grid-template-columns:1fr 1.3fr;gap:56px;align-items:start}
+.inquiry-info h3{font-family:'Bricolage Grotesque',sans-serif;font-size:1.4rem;
+  color:var(--navy);margin-bottom:12px}
+.inquiry-info p{font-size:.9rem;color:var(--muted);line-height:1.8;margin-bottom:24px}
+.inquiry-contact-item{display:flex;align-items:center;gap:12px;padding:14px 16px;
+  background:var(--card-bg);border:1px solid var(--card-bdr);border-radius:6px;
+  margin-bottom:10px;text-decoration:none;color:inherit;transition:border-color .2s}
+.inquiry-contact-item:hover{border-color:var(--teal)}
+.ici-icon{width:34px;height:34px;border-radius:6px;background:var(--surface);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.9rem}
+.ici-label{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--light)}
+.ici-val{font-size:.83rem;color:var(--navy);font-weight:500}
+.portfolio-link{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--teal);
+  text-decoration:none;margin-top:16px;font-weight:500;transition:gap .2s}
+.portfolio-link:hover{gap:12px}
+
+/* Form */
+.inquiry-form{background:var(--card-bg);border:1px solid var(--card-bdr);
+  border-radius:10px;padding:40px 36px;box-shadow:var(--shadow)}
+.form-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.2rem;
+  color:var(--navy);margin-bottom:24px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:.75rem;font-weight:500;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:11px 14px;border:1px solid var(--card-bdr);border-radius:4px;
+  background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:.88rem;
+  transition:border-color .2s,box-shadow .2s;outline:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+  border-color:var(--navy);box-shadow:0 0 0 3px rgba(13,43,78,.08)}
+.form-group textarea{resize:vertical;min-height:110px}
+.form-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%234A607A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center}
+.form-submit{margin-top:6px}
+.form-note{font-size:.76rem;color:var(--light);margin-top:10px;font-style:italic}
+#form-status{margin-top:12px;font-size:.85rem;color:var(--teal);display:none}
+
+/* ── FOOTER ─────────────────────────────────────────────────────── */
+footer{background:#060E1A}
+.footer-copy{font-size:.73rem;color:rgba(255,255,255,.25);font-family:'JetBrains Mono',monospace}
+
+/* ── PARADATA EXPANDED PANEL ────────────────────────────────────── */
+.para-expand-btn{
+  display:flex;align-items:center;gap:8px;margin-top:14px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  border-radius:5px;padding:9px 14px;cursor:pointer;width:100%;
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.5);transition:background .2s,color .2s;
+  position:relative;z-index:1}
+.para-expand-btn:hover{background:rgba(255,255,255,.1);color:rgba(255,255,255,.85)}
+.para-expand-btn .btn-arrow{margin-left:auto;transition:transform .3s}
+.para-expand-btn.open .btn-arrow{transform:rotate(180deg)}
+
+.para-drawer{
+  display:none;position:fixed;inset:0;z-index:200;
+  background:rgba(5,10,20,.88);backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  justify-content:center;align-items:center;padding:24px}
+.para-drawer.open{display:flex}
+.para-drawer-inner{
+  background:#0A1525;border:1px solid rgba(255,255,255,.1);border-radius:12px;
+  width:100%;max-width:860px;max-height:90vh;overflow-y:auto;
+  box-shadow:0 32px 96px rgba(0,0,0,.7)}
+.para-drawer-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 24px;border-bottom:1px solid rgba(255,255,255,.08);
+  position:sticky;top:0;background:#0A1525;z-index:2;border-radius:12px 12px 0 0}
+.para-drawer-title{font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+.para-drawer-subtitle{font-size:.75rem;color:rgba(255,255,255,.35);margin-top:3px}
+.para-close{background:none;border:1px solid rgba(255,255,255,.15);border-radius:4px;
+  color:rgba(255,255,255,.5);cursor:pointer;font-size:.8rem;padding:5px 12px;
+  font-family:'JetBrains Mono',monospace;transition:all .2s}
+.para-close:hover{border-color:rgba(255,255,255,.4);color:#fff}
+
+.para-drawer-body{padding:24px}
+.para-section{margin-bottom:28px}
+.para-section-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:12px;
+  padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.07)}
+
+/* Metric cards row */
+.para-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:8px}
+.para-metric{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:7px;padding:14px 12px;text-align:center}
+.para-metric-n{font-family:'Bricolage Grotesque',sans-serif;font-size:1.5rem;
+  color:#fff;line-height:1;margin-bottom:4px}
+.para-metric-n.green{color:#27C93F}
+.para-metric-n.amber{color:var(--amber)}
+.para-metric-n.red{color:#FF5F56}
+.para-metric-l{font-family:'JetBrains Mono',monospace;font-size:.47rem;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.32)}
+
+/* Table */
+.para-table{width:100%;border-collapse:collapse;font-size:.77rem}
+.para-table th{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.35);padding:8px 10px;
+  border-bottom:1px solid rgba(255,255,255,.08);text-align:left;font-weight:400}
+.para-table td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.05);
+  color:rgba(255,255,255,.72);vertical-align:middle}
+.para-table tr:last-child td{border-bottom:none}
+.para-table tr:hover td{background:rgba(255,255,255,.03)}
+.status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;flex-shrink:0}
+.sd-green{background:#27C93F}.sd-amber{background:#FFBD2E}.sd-red{background:#FF5F56}
+.flag-pill{display:inline-block;padding:2px 8px;border-radius:3px;font-family:'JetBrains Mono',monospace;
+  font-size:.54rem;letter-spacing:.06em}
+.flag-ok{background:rgba(39,201,63,.15);color:#27C93F;border:1px solid rgba(39,201,63,.25)}
+.flag-warn{background:rgba(255,189,46,.15);color:#FFBD2E;border:1px solid rgba(255,189,46,.25)}
+.flag-err{background:rgba(255,95,86,.15);color:#FF5F56;border:1px solid rgba(255,95,86,.25)}
+
+/* Mini bar chart */
+.hour-chart{display:flex;align-items:flex-end;gap:4px;height:52px;margin-top:4px}
+.hour-bar-wrap{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1}
+.hour-bar{width:100%;border-radius:2px 2px 0 0;transition:opacity .2s;cursor:default}
+.hour-bar.night{background:rgba(255,95,86,.55)}
+.hour-bar.day{background:rgba(26,122,110,.6)}
+.hour-bar.peak{background:rgba(26,122,110,.9)}
+.hour-bar:hover{opacity:.75}
+.hour-label{font-family:'JetBrains Mono',monospace;font-size:.42rem;color:rgba(255,255,255,.28);
+  writing-mode:horizontal-tb}
+.hour-chart-legend{display:flex;gap:14px;margin-top:8px}
+.hcl-item{display:flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;
+  font-size:.55rem;color:rgba(255,255,255,.38)}
+.hcl-dot{width:8px;height:8px;border-radius:2px}
+
+/* Error pattern list */
+.error-list{display:flex;flex-direction:column;gap:8px}
+.error-row{display:flex;align-items:center;gap:10px;padding:10px 12px;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:5px}
+.error-bar-bg{flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.error-bar-fill{height:100%;border-radius:3px;background:rgba(255,95,86,.6)}
+.error-label{font-size:.73rem;color:rgba(255,255,255,.65);min-width:200px}
+.error-count{font-family:'JetBrains Mono',monospace;font-size:.62rem;
+  color:rgba(255,95,86,.8);min-width:40px;text-align:right}
+
+/* Shiny link banner */
+.shiny-banner{background:linear-gradient(135deg,rgba(13,43,78,.9),rgba(26,122,110,.3));
+  border:1px solid rgba(26,122,110,.35);border-radius:8px;padding:18px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.shiny-banner-text{font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.6}
+.shiny-banner-text strong{color:rgba(255,255,255,.9)}
+.shiny-link{display:inline-flex;align-items:center;gap:7px;background:var(--teal);
+  color:#fff;padding:9px 18px;border-radius:4px;font-size:.78rem;font-weight:500;
+  letter-spacing:.04em;text-decoration:none;white-space:nowrap;transition:background .2s}
+.shiny-link:hover{background:var(--teal2)}
+
+/* ── READ MORE ──────────────────────────────────────────────────── */
+.rm-wrap{position:relative}
+.rm-hidden{display:none}
+.rm-toggle{display:inline;background:none;border:none;padding:0;cursor:pointer;
+  font-size:inherit;font-family:inherit;font-weight:500;color:var(--teal);
+  letter-spacing:.01em;transition:color .2s}
+.rm-toggle:hover{color:var(--teal2)}
+
+/* ── REVEAL ANIMATION ───────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────────── */
+@media(max-width:1024px){
+  #hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-left{padding:60px 32px}
+  .services-grid{grid-template-columns:1fr 1fr}
+  .why-grid{grid-template-columns:1fr}
+  .q-grid{grid-template-columns:1fr 1fr}
+  .data-two{grid-template-columns:1fr}
+  .inquiry-wrap{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  .nav-links{display:none}.hamburger{display:flex}
+  .services-grid{grid-template-columns:1fr}
+  .q-grid{grid-template-columns:1fr}
+  section{padding:72px 24px}
+  .hero-left{padding:48px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#">
+      <div class="nav-brand-mark">
+        <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="5" height="5" rx="1"/>
+          <rect x="8" y="1" width="5" height="5" rx="1"/>
+          <rect x="1" y="8" width="5" height="5" rx="1"/>
+          <rect x="8" y="8" width="5" height="5" rx="1"/>
+        </svg>
+      </div>
+      <span class="nav-brand-text">Atinga Survey Research</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">Why Survey Solutions</a></li>
+      <li><a href="#inquiry" class="nav-cta">Inquire</a></li>
+    </ul>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      <div class="toggle-track"><div class="toggle-knob"></div></div>
+    </button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#why" onclick="closeMenu()">Why Survey Solutions</a>
+  <a href="#inquiry" onclick="closeMenu()">Send an Inquiry</a>
+</div>
+
+<!-- ── HERO ─────────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Survey Research Consultancy</div>
+    <h1 class="hero-headline">Design &amp; Implement<br/><em>Survey Research</em><br/>that Works in the Field</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">End-to-end survey implementation using the <strong>World Bank Survey Solutions</strong> platform — from questionnaire design and server deployment to data collection, quality monitoring, and analysis.</p>
+    <div class="hero-tags">
+      <span class="htag">CAPI · CAWI · CATI</span>
+      <span class="htag">GPS &amp; GIS</span>
+      <span class="htag">Paradata QC</span>
+      <span class="htag">Sub-Saharan Africa</span>
+      <span class="htag">Development Research</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#inquiry" class="btn-p">Request a Consultation ↗</a>
+      <a href="#services" class="btn-o">View Services</a>
+      <a href="https://davidatinga.netlify.app/" target="_blank" rel="noopener" class="btn-t">Portfolio →</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="terminal-wrap">
+      <div class="terminal-bar">
+        <div class="t-dot r"></div>
+        <div class="t-dot y"></div>
+        <div class="t-dot g"></div>
+        <span class="terminal-title">Survey Solutions · Paradata Monitor</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line"><span class="t-key">Survey</span><span class="t-val">Ghana Household Welfare Survey</span></div>
+        <div class="t-line"><span class="t-key">Mode</span><span class="t-val"><span class="t-badge">CAPI</span> &nbsp;<span class="t-badge amber">CAWI</span></span></div>
+        <hr class="t-divider"/>
+        <div class="t-line"><span class="t-key">Completed</span><span class="t-val">247 / 300 interviews</span></div>
+        <div class="t-line"><span class="t-key">Avg duration</span><span class="t-val">38 min 12 sec</span></div>
+        <div class="t-line"><span class="t-key">Night interviews</span><span class="t-val" style="color:#FFBD2E">⚠ 7 flagged (22:00–05:00)</span></div>
+        <div class="t-line"><span class="t-key">GPS captured</span><span class="t-val">247 / 247 ✓</span></div>
+        <hr class="t-divider"/>
+        <div class="t-line"><span class="t-key">Interviewers</span><span class="t-val">12 active · 1 flagged</span></div>
+        <div class="t-line"><span class="t-key">Rejection rate</span><span class="t-val" style="color:#FFBD2E">3.2 % (threshold: 5 %)</span></div>
+        <div class="t-line"><span class="t-key">Validation errors</span><span class="t-val" style="color:#FF5F56">4 critical · 11 warnings</span></div>
+        <div class="t-line"><span class="t-key">Status</span><span class="t-val" style="color:#27C93F">● Field collection live</span></div>
+      </div>
+      <button class="para-expand-btn" id="paraBtn" onclick="openParadata()">
+        <span>▦</span> View full paradata quality report
+        <span class="btn-arrow">▾</span>
+      </button>
+    </div>
+    <div class="hero-stats-row" style="flex-direction:column;gap:10px">
+      <div class="hstat hstat-wide">
+        <div class="hstat-l" style="margin-bottom:8px;font-size:.5rem;letter-spacing:.14em">Collection Modes · Offline &amp; Online</div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+          <span class="hstat-badge capi-b">CAPI</span>
+          <span class="hstat-badge cawi-b">CAWI</span>
+          <span class="hstat-badge cati-b">CATI</span>
+          <span class="hstat-badge gps-b">GPS</span>
+        </div>
+        <div style="font-size:.56rem;color:rgba(255,255,255,.32);margin-top:8px;font-family:'JetBrains Mono',monospace;letter-spacing:.06em">Android · Browser · Phone · Field</div>
+      </div>
+      <div style="display:flex;gap:10px;width:100%">
+        <div class="hstat" style="flex:1">
+          <div class="hstat-n" style="font-size:1.15rem">GEE</div>
+          <div class="hstat-l">Env. Data</div>
+        </div>
+        <div class="hstat" style="flex:1">
+          <div class="hstat-n" style="font-size:1.15rem">Free</div>
+          <div class="hstat-l">WB Platform</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ──────────────────────────────────────────────────── -->
+<section id="services">
+  <div class="container">
+    <div class="s-label">What I Do</div>
+    <h2 class="s-title">Professional Survey Research<br/><em>from Design to Delivery</em></h2>
+    <div class="s-rule"></div>
+    <div class="services-grid">
+
+      <div class="svc-card primary reveal">
+        <div class="svc-icon">📋</div>
+        <div class="svc-title">Questionnaire Design &amp; Implementation</div>
+        <div class="svc-desc">End-to-end design of survey instruments in Survey Solutions Designer — including complex rosters, skip logic, validation rules, audio recording, barcode scanning, and multi-language support. Full lifecycle from pilot to final deployment.</div>
+        <span class="svc-tag">Core Service</span>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">🖥️</div>
+        <div class="svc-title">Survey Deployment</div>
+        <div class="svc-desc">Deploy and configure Survey Solutions headquarters. Includes user management, supervisor and interviewer accounts, synchronisation setup, and API integration.<span class="rm-hidden" id="rm-deploy"> Cloud platforms (Oracle Cloud, AWS, Azure) or on-premises Windows servers supported.</span> <button class="rm-toggle" onclick="toggleRM('rm-deploy',this)" aria-expanded="false">+ more</button></div>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">📊</div>
+        <div class="svc-title">Field Monitoring &amp; Paradata QC</div>
+        <div class="svc-desc">Real-time monitoring of field progress using paradata. Build composite quality dashboards (R → PostgreSQL → Metabase), flag anomalies in interview duration, GPS consistency, and response patterns.</div>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">📈</div>
+        <div class="svc-title">Data Analysis &amp; Report Writing</div>
+        <div class="svc-desc">Statistical analysis of survey data using STATA, R, or Python. Covers descriptive and inferential analysis, impact evaluation (DiD, IV, panel data), and production of research-ready tables, charts, and technical reports.</div>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">🛰️</div>
+        <div class="svc-title">GEE Climate &amp; Environmental Data</div>
+        <div class="svc-desc">Access and process weather, climate, land-use, and vegetation data from Google Earth Engine to complement household and agricultural surveys. Merge geo-referenced survey data with CHIRPS rainfall, MODIS NDVI, ERA5 climate, and more.</div>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">🎓</div>
+        <div class="svc-title">Training &amp; Capacity Building</div>
+        <div class="svc-desc">Hands-on training for survey teams, research assistants, and M&amp;E officers on Survey Solutions CAPI/CAWI workflows, quality control protocols, and paradata-based field supervision.</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ── WHY SURVEY SOLUTIONS ──────────────────────────────────────── -->
+<section id="why">
+  <div class="container">
+    <div class="s-label">Platform Advantages</div>
+    <h2 class="s-title">Why <em>Survey Solutions</em>?</h2>
+    <div class="s-rule"></div>
+    <div class="why-grid">
+
+      <div class="why-features">
+
+        <div class="why-feat reveal">
+          <div class="why-feat-icon">🌐</div>
+          <div>
+            <div class="why-feat-title">CAWI — Self-Administered Online Interviews</div>
+            <div class="why-feat-desc">Web-mode (CAWI) lets respondents complete questionnaires on any device via a secure URL — ideal for Key Informant Interviews, expert surveys, and remote data collection. Auto email<span class="rm-hidden" id="rm-cawi"> reminders keep response rates high without manual follow-up, and respondents can <strong>resume a partially completed interview</strong> at any time.</span> <button class="rm-toggle" onclick="toggleRM('rm-cawi',this)" aria-expanded="false">+ more</button></div>
+          </div>
+        </div>
+
+        <div class="why-feat reveal">
+          <div class="why-feat-icon">📡</div>
+          <div>
+            <div class="why-feat-title">GPS, GIS &amp; Offline Mapping</div>
+            <div class="why-feat-desc">Capture precise GPS coordinates, land areas, and boundaries using the built-in geography question type. Interviewers can navigate to sampling points offline using high-resolution<span class="rm-hidden" id="rm-gps"> satellite imagery, and apply geofencing to enforce interview location compliance — even with no mobile signal.</span> <button class="rm-toggle" onclick="toggleRM('rm-gps',this)" aria-expanded="false">+ more</button></div>
+          </div>
+        </div>
+
+        <div class="why-feat reveal">
+          <div class="why-feat-icon">✅</div>
+          <div>
+            <div class="why-feat-title">Powerful Validation &amp; Logic</div>
+            <div class="why-feat-desc">Build sophisticated data validation rules and skip logic using .NET expressions, macros, and lookup tables. Errors are flagged in real time during the interview, eliminating<span class="rm-hidden" id="rm-valid"> back-office data cleaning. Supervisor rejection and commenting workflows enforce multi-level quality control.</span> <button class="rm-toggle" onclick="toggleRM('rm-valid',this)" aria-expanded="false">+ more</button></div>
+          </div>
+        </div>
+
+        <div class="why-feat reveal">
+          <div class="why-feat-icon">🔒</div>
+          <div>
+            <div class="why-feat-title">Secure, Scalable, and Free</div>
+            <div class="why-feat-desc">Survey Solutions is free, open-source software developed and maintained by the World Bank. It scales from small KII studies to national census operations, with robust user<span class="rm-hidden" id="rm-secure"> role management (HQ admin → Supervisor → Interviewer) and full REST API access for system integration.</span> <button class="rm-toggle" onclick="toggleRM('rm-secure',this)" aria-expanded="false">+ more</button></div>
+          </div>
+        </div>
+
+        <div class="why-feat reveal">
+          <div class="why-feat-icon">📤</div>
+          <div>
+            <div class="why-feat-title">Export-Ready for Any Analysis Software</div>
+            <div class="why-feat-desc">Export clean, labelled datasets directly in STATA (.dta), SPSS (.sav), CSV, or tab-delimited formats — with all question labels, value labels, and metadata intact. Export paradata alongside responses for interview process analysis.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="why-panel reveal">
+        <div class="why-panel-label">Collection Modes Supported</div>
+        <h3 class="why-panel-title">One Platform,<br/><em>Every Interview Mode</em></h3>
+        <p class="why-panel-text">Survey Solutions supports mixed-mode data collection, allowing the same questionnaire instrument to be deployed across multiple channels in the same survey round.</p>
+        <div class="mode-list">
+          <div class="mode-item">
+            <span class="mode-badge capi">CAPI</span>
+            <div class="mode-text"><strong>Computer-Assisted Personal Interview</strong> — Enumerator-led on Android tablets or smartphones, with full offline capability. Audio audit, barcode, image, and sensor capture supported.</div>
+          </div>
+          <div class="mode-item">
+            <span class="mode-badge cawi">CAWI</span>
+            <div class="mode-text"><strong>Computer-Assisted Web Interview</strong> — Respondent self-completes via browser. Ideal for <strong>KIIs</strong>, expert panels, and remote stakeholders. Auto email reminders and resume-after-start capability built in.</div>
+          </div>
+          <div class="mode-item">
+            <span class="mode-badge cawi" style="background:rgba(90,140,200,.25);color:#7ABCF5;border-color:rgba(90,140,200,.35)">CATI</span>
+            <div class="mode-text"><strong>Computer-Assisted Telephone Interview</strong> — Enumerator-administered over phone. The platform records call metadata alongside responses for quality verification.</div>
+          </div>
+          <div class="mode-item">
+            <span class="mode-badge gps">GPS</span>
+            <div class="mode-text"><strong>Geospatial Data Capture</strong> — Points, polygons, polylines, and boundaries. Offline satellite imagery navigation. Geofencing to enforce sampling protocols in the field.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ── INQUIRY ───────────────────────────────────────────────────── -->
+<section id="inquiry">
+  <div class="container">
+    <div class="s-label">Get in Touch</div>
+    <h2 class="s-title">Start Your <em>Survey Project</em></h2>
+    <div class="s-rule"></div>
+
+    <div class="inquiry-wrap">
+      <div class="inquiry-info">
+        <h3>Let's scope your study together</h3>
+        <p>Whether you're planning a baseline household survey, deploying a KII instrument to remote stakeholders, or need to link field data with satellite climate records — I'd welcome a conversation about how I can help.</p>
+        <p>Based in Minnesota, USA. Available for remote and international engagements across Africa and beyond.</p>
+
+        <a class="inquiry-contact-item" href="mailto:atingad@gmail.com">
+          <div class="ici-icon">✉</div>
+          <div>
+            <div class="ici-label">Email</div>
+            <div class="ici-val">atingad@gmail.com</div>
+          </div>
+        </a>
+        <a class="inquiry-contact-item" href="https://www.linkedin.com/in/atingadavid" target="_blank" rel="noopener">
+          <div class="ici-icon">in</div>
+          <div>
+            <div class="ici-label">LinkedIn</div>
+            <div class="ici-val">linkedin.com/in/atingadavid</div>
+          </div>
+        </a>
+        <div class="inquiry-contact-item" style="cursor:default">
+          <div class="ici-icon">📍</div>
+          <div>
+            <div class="ici-label">Location</div>
+            <div class="ici-val">Minnesota, USA · Remote &amp; International</div>
+          </div>
+        </div>
+
+        <a href="https://davidatinga.netlify.app/" class="portfolio-link" target="_blank" rel="noopener">
+          View full academic portfolio →
+        </a>
+      </div>
+
+      <div class="inquiry-form reveal">
+        <div class="form-title">Send an Inquiry</div>
+        <form id="inquiryForm" action="https://formspree.io/f/mbdwkyry" method="POST">
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off"/>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Your Name</label>
+              <input type="text" id="fname" name="name" placeholder="Dr. Jane Smith" required/>
+            </div>
+            <div class="form-group">
+              <label for="femail">Email Address</label>
+              <input type="email" id="femail" name="email" placeholder="jane@institution.org" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="forg">Organisation / Institution</label>
+            <input type="text" id="forg" name="organisation" placeholder="World Bank · IFAD · University…"/>
+          </div>
+          <div class="form-group">
+            <label for="ftype">Service Required</label>
+            <select id="ftype" name="service_type">
+              <option value="">Select a service…</option>
+              <option>Questionnaire Design &amp; Survey Solutions Setup</option>
+              <option>CAWI / KII Instrument Design</option>
+              <option>Server Deployment &amp; Configuration</option>
+              <option>Field Monitoring &amp; Paradata QC</option>
+              <option>Data Analysis &amp; Report Writing</option>
+              <option>GEE Climate &amp; Environmental Data</option>
+              <option>Training / Capacity Building</option>
+              <option>Full Survey Implementation Package</option>
+              <option>Other / General Inquiry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fmsg">Project Description</label>
+            <textarea id="fmsg" name="message" placeholder="Briefly describe your study, target population, timeline, and any specific requirements…" required></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn-p" style="width:100%;justify-content:center">Send Inquiry →</button>
+          </div>
+          <p class="form-note">I typically respond within 1–2 business days.</p>
+          <div id="form-status"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PARADATA QUALITY DRAWER ────────────────────────────────────── -->
+<div class="para-drawer" id="paraDrawer" onclick="closeParadataOutside(event)">
+  <div class="para-drawer-inner">
+    <div class="para-drawer-header">
+      <div>
+        <div class="para-drawer-title">Paradata Quality Control Report — Sample</div>
+        <div class="para-drawer-subtitle">Ghana Household Welfare Survey · CAPI/CAWI · Round 1 · 300 HH target</div>
+      </div>
+      <button class="para-close" onclick="closeParadata()">✕ Close</button>
+    </div>
+
+    <div class="para-drawer-body">
+
+      <!-- Charts rendered inline — no external dependencies -->
+
+      <!-- ── HEADER BANNER ── -->
+      <div style="background:linear-gradient(135deg,#0a0f1a,#0d1e35);border:1px solid #1e2d45;border-radius:8px;padding:16px 20px;margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:10px">
+          <div>
+            <div style="font-size:11px;font-weight:700;background:linear-gradient(135deg,#3b82f6,#06b6d4);-webkit-background-clip:text;background-clip:text;color:transparent">📊 Complete Paradata Quality Assurance Suite</div>
+            <div style="font-size:9px;color:#64748b;margin-top:3px;letter-spacing:.08em">ECONOMETRIC RISK ASSESSMENT · REAL-TIME FIELDWORK QA · GPS TRUST SCORE · FRAUD DETECTION</div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <span style="background:#0d1117;border:1px solid #1e2d45;border-radius:6px;padding:4px 10px;font-size:9px;color:#64748b">Last Sync: <span style="color:#06b6d4;font-weight:600">2026-05-23 06:00 UTC</span></span>
+            <span style="background:#0d1117;border:1px solid #1e2d45;border-radius:6px;padding:4px 10px;font-size:9px;color:#64748b">Paradata Events: <span style="color:#06b6d4;font-weight:600">47,283</span></span>
+            <span style="background:#0d1117;border:1px solid #1e2d45;border-radius:6px;padding:4px 10px;font-size:9px;color:#64748b">Active Interviewers: <span style="color:#06b6d4;font-weight:600">18/22</span></span>
+          </div>
+        </div>
+        <div style="display:flex;gap:20px;font-size:9px;color:#475569;flex-wrap:wrap">
+          <span>🔐 API: SurveySolutionsAPI v2.1</span>
+          <span>📊 Completion: 71.3% (1,284/1,800)</span>
+          <span>⚡ Avg Risk Score: 2.47</span>
+          <span>🎯 Target: 2026-06-15</span>
+          <span>📈 Daily Need: 42 interviews/day</span>
+        </div>
+      </div>
+
+      <!-- ── 8-KPI ROW ── -->
+      <div class="para-section">
+        <div class="para-section-label">Key Quality Indicators</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:12px;border-left:3px solid #22c55e"><div style="font-size:8px;text-transform:uppercase;letter-spacing:1px;color:#64748b;margin-bottom:4px">✓ Total Completed</div><div style="font-size:22px;font-weight:700;color:#22c55e">1,284</div><div style="font-size:8px;color:#64748b">▲ +42 today · 71% of 1,800</div></div>
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:12px;border-left:3px solid #ef4444"><div style="font-size:8px;text-transform:uppercase;letter-spacing:1px;color:#64748b;margin-bottom:4px">✗ Rejected (HQ)</div><div style="font-size:22px;font-weight:700;color:#ef4444">47</div><div style="font-size:8px;color:#64748b">3.7% rate · Supervisor: 31</div></div>
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:12px;border-left:3px solid #3b82f6"><div style="font-size:8px;text-transform:uppercase;letter-spacing:1px;color:#64748b;margin-bottom:4px">⏱ Avg Duration</div><div style="font-size:22px;font-weight:700;color:#3b82f6">28.4<span style="font-size:13px">m</span></div><div style="font-size:8px;color:#64748b">Median: 26.3 min · Bench: 25m</div></div>
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:12px;border-left:3px solid #a855f7"><div style="font-size:8px;text-transform:uppercase;letter-spacing:1px;color:#64748b;margin-bottom:4px">📍 GPS Capture</div><div style="font-size:22px;font-weight:700;color:#a855f7">93.5%</div><div style="font-size:8px;color:#64748b">83 missing · 12 poor accuracy</div></div>
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:12px;border-left:3px solid #f97316"><div style="font-size:8px;text-transform:uppercase;letter-spacing:1px;color:#64748b;margin-bottom:4px">⚠ Validation Errors</div><div style="font-size:22px;font-weight:700;color:#f97316">6.9%</div><div style="font-size:8px;color:#64748b">Avg 2.3 errors/interview</div></div>
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:12px;border-left:3px solid #eab308"><div style="font-size:8px;text-transform:uppercase;letter-spacing:1px;color:#64748b;margin-bottom:4px">✏️ Answer Edits</div><div style="font-size:22px;font-weight:700;color:#eab308">2.8</div><div style="font-size:8px;color:#64748b">Avg edits per interview</div></div>
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:12px;border-left:3px solid #06b6d4"><div style="font-size:8px;text-transform:uppercase;letter-spacing:1px;color:#64748b;margin-bottom:4px">☑ Approval Rate</div><div style="font-size:22px;font-weight:700;color:#06b6d4">96%</div><div style="font-size:8px;color:#64748b">1,233 approved by HQ</div></div>
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:12px;border-left:3px solid #ec4899"><div style="font-size:8px;text-transform:uppercase;letter-spacing:1px;color:#64748b;margin-bottom:4px">🌙 Night Interviews</div><div style="font-size:22px;font-weight:700;color:#ec4899">14</div><div style="font-size:8px;color:#ef4444">Flagged suspicious (20–05h)</div></div>
+        </div>
+      </div>
+
+      <!-- ── CHARTS ROW 1: Daily Trend + Duration Histogram ── -->
+      <div class="para-section">
+        <div class="para-section-label">Daily Completion Trend &amp; Duration Distribution</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:16px">
+            <div style="font-size:10px;font-weight:600;color:#94a3b8;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #1e2d45">📈 Daily Completion Trend (Last 14 Days)</div>
+            <svg viewBox="0 0 340 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:160px">
+              <!-- grid lines -->
+              <line x1="28" y1="10" x2="28" y2="128" stroke="#1e2d45" stroke-width="1"/>
+              <line x1="28" y1="128" x2="336" y2="128" stroke="#1e2d45" stroke-width="1"/>
+              <line x1="28" y1="90" x2="336" y2="90" stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="3,3"/>
+              <line x1="28" y1="60" x2="336" y2="60" stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="3,3"/>
+              <line x1="28" y1="30" x2="336" y2="30" stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="3,3"/>
+              <!-- y-axis labels -->
+              <text x="24" y="131" fill="#64748b" font-size="7" text-anchor="end">0</text>
+              <text x="24" y="93" fill="#64748b" font-size="7" text-anchor="end">50</text>
+              <text x="24" y="63" fill="#64748b" font-size="7" text-anchor="end">80</text>
+              <text x="24" y="33" fill="#64748b" font-size="7" text-anchor="end">110</text>
+              <!-- x-axis labels: days 9–22 -->
+              <text x="44"  y="141" fill="#64748b" font-size="6.5" text-anchor="middle">9</text>
+              <text x="66"  y="141" fill="#64748b" font-size="6.5" text-anchor="middle">10</text>
+              <text x="88"  y="141" fill="#64748b" font-size="6.5" text-anchor="middle">11</text>
+              <text x="110" y="141" fill="#64748b" font-size="6.5" text-anchor="middle">12</text>
+              <text x="132" y="141" fill="#64748b" font-size="6.5" text-anchor="middle">13</text>
+              <text x="154" y="141" fill="#64748b" font-size="6.5" text-anchor="middle">14</text>
+              <text x="176" y="141" fill="#64748b" font-size="6.5" text-anchor="middle">15</text>
+              <text x="198" y="141" fill="#64748b" font-size="6.5" text-anchor="middle">16</text>
+              <text x="220" y="141" fill="#64748b" font-size="6.5" text-anchor="middle">17</text>
+              <text x="242" y="141" fill="#64748b" font-size="6.5" text-anchor="middle">18</text>
+              <text x="264" y="141" fill="#64748b" font-size="6.5" text-anchor="middle">19</text>
+              <text x="286" y="141" fill="#64748b" font-size="6.5" text-anchor="middle">20</text>
+              <text x="308" y="141" fill="#64748b" font-size="6.5" text-anchor="middle">21</text>
+              <text x="330" y="141" fill="#64748b" font-size="6.5" text-anchor="middle">22</text>
+              <!-- Completed line: data=[78,92,85,104,97,112,88,94,101,89,118,103,96,84] scaled 0-120→128-10 -->
+              <!-- y = 128 - (v/120)*118 -->
+              <polyline points="44,51 66,38 88,44 110,26 132,32 154,18 176,41 198,35 220,28 242,40 264,15 286,26 308,34 330,45"
+                fill="none" stroke="#22c55e" stroke-width="2" stroke-linejoin="round"/>
+              <circle cx="44"  cy="51" r="2.5" fill="#22c55e"/><circle cx="66"  cy="38" r="2.5" fill="#22c55e"/>
+              <circle cx="88"  cy="44" r="2.5" fill="#22c55e"/><circle cx="110" cy="26" r="2.5" fill="#22c55e"/>
+              <circle cx="132" cy="32" r="2.5" fill="#22c55e"/><circle cx="154" cy="18" r="2.5" fill="#22c55e"/>
+              <circle cx="176" cy="41" r="2.5" fill="#22c55e"/><circle cx="198" cy="35" r="2.5" fill="#22c55e"/>
+              <circle cx="220" cy="28" r="2.5" fill="#22c55e"/><circle cx="242" cy="40" r="2.5" fill="#22c55e"/>
+              <circle cx="264" cy="15" r="2.5" fill="#22c55e"/><circle cx="286" cy="26" r="2.5" fill="#22c55e"/>
+              <circle cx="308" cy="34" r="2.5" fill="#22c55e"/><circle cx="330" cy="45" r="2.5" fill="#22c55e"/>
+              <!-- Rejected line: data=[2,3,1,4,2,5,2,3,4,2,6,3,4,2] -->
+              <polyline points="44,126 66,125 88,127 110,124 132,126 154,122 176,126 198,125 220,124 242,126 264,121 286,125 308,124 330,126"
+                fill="none" stroke="#ef4444" stroke-width="1.5" stroke-linejoin="round"/>
+              <!-- With Errors line: data=[4,5,3,6,4,7,3,5,6,4,8,5,6,4] -->
+              <polyline points="44,124 66,123 88,125 110,121 132,124 154,120 176,125 198,123 220,121 242,124 264,119 286,123 308,121 330,124"
+                fill="none" stroke="#f97316" stroke-width="1.5" stroke-linejoin="round" stroke-dasharray="4,2"/>
+              <!-- Legend -->
+              <rect x="32" y="148" width="8" height="3" fill="#22c55e" rx="1"/>
+              <text x="43" y="151" fill="#94a3b8" font-size="6.5">Completed</text>
+              <rect x="95" y="148" width="8" height="3" fill="#ef4444" rx="1"/>
+              <text x="106" y="151" fill="#94a3b8" font-size="6.5">Rejected</text>
+              <rect x="150" y="148" width="8" height="3" fill="#f97316" rx="1"/>
+              <text x="161" y="151" fill="#94a3b8" font-size="6.5">With Errors</text>
+            </svg>
+          </div>
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:16px">
+            <div style="font-size:10px;font-weight:600;color:#94a3b8;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #1e2d45">⏱ Interview Duration Distribution <span style="color:#ef4444;font-size:9px">Flags: &lt;10m | &gt;90m</span></div>
+            <svg viewBox="0 0 320 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:170px">
+              <!-- grid -->
+              <line x1="32" y1="10" x2="32" y2="128" stroke="#1e2d45" stroke-width="1"/>
+              <line x1="32" y1="128" x2="316" y2="128" stroke="#1e2d45" stroke-width="1"/>
+              <line x1="32" y1="90" x2="316" y2="90" stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="3,3"/>
+              <line x1="32" y1="60" x2="316" y2="60" stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="3,3"/>
+              <line x1="32" y1="30" x2="316" y2="30" stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="3,3"/>
+              <text x="28" y="131" fill="#64748b" font-size="7" text-anchor="end">0</text>
+              <text x="28" y="93" fill="#64748b" font-size="7" text-anchor="end">100</text>
+              <text x="28" y="63" fill="#64748b" font-size="7" text-anchor="end">250</text>
+              <text x="28" y="33" fill="#64748b" font-size="7" text-anchor="end">400</text>
+              <!-- bars: data=[3,7,18,89,213,278,401,187,67,21], scale max=401→118px height -->
+              <!-- bar width ~26px, gap 3, start x=35 -->
+              <!-- red flags: i<=1 (idx 0,1) and i>=8 (idx 8,9) -->
+              <!-- dc[i] mapped: y = 128 - (v/401)*118 -->
+              <rect x="35"  y="127" width="24" height="1"   fill="#ef4444" rx="1"/><!-- 3 -->
+              <rect x="62"  y="126" width="24" height="2"   fill="#ef4444" rx="1"/><!-- 7 -->
+              <rect x="89"  y="123" width="24" height="5"   fill="#3b82f6" rx="1"/><!-- 18 -->
+              <rect x="116" y="102" width="24" height="26"  fill="#3b82f6" rx="1"/><!-- 89 -->
+              <rect x="143" y="65"  width="24" height="63"  fill="#3b82f6" rx="1"/><!-- 213 -->
+              <rect x="170" y="46"  width="24" height="82"  fill="#3b82f6" rx="1"/><!-- 278 -->
+              <rect x="197" y="10"  width="24" height="118" fill="#3b82f6" rx="1"/><!-- 401 -->
+              <rect x="224" y="73"  width="24" height="55"  fill="#3b82f6" rx="1"/><!-- 187 -->
+              <rect x="251" y="108" width="24" height="20"  fill="#ef4444" rx="1"/><!-- 67 -->
+              <rect x="278" y="122" width="24" height="6"   fill="#ef4444" rx="1"/><!-- 21 -->
+              <!-- x labels -->
+              <text x="47"  y="140" fill="#64748b" font-size="6" text-anchor="middle">&lt;5</text>
+              <text x="74"  y="140" fill="#64748b" font-size="6" text-anchor="middle">5-10</text>
+              <text x="101" y="140" fill="#64748b" font-size="6" text-anchor="middle">10-15</text>
+              <text x="128" y="140" fill="#64748b" font-size="6" text-anchor="middle">15-20</text>
+              <text x="155" y="140" fill="#64748b" font-size="6" text-anchor="middle">20-25</text>
+              <text x="182" y="140" fill="#64748b" font-size="6" text-anchor="middle">25-30</text>
+              <text x="209" y="140" fill="#64748b" font-size="6" text-anchor="middle">30-40</text>
+              <text x="236" y="140" fill="#64748b" font-size="6" text-anchor="middle">40-60</text>
+              <text x="263" y="140" fill="#64748b" font-size="6" text-anchor="middle">60-90</text>
+              <text x="290" y="140" fill="#64748b" font-size="6" text-anchor="middle">&gt;90</text>
+              <!-- legend -->
+              <rect x="35" y="152" width="9" height="7" fill="#3b82f6" rx="1"/>
+              <text x="47" y="158" fill="#94a3b8" font-size="7">Normal range</text>
+              <rect x="120" y="152" width="9" height="7" fill="#ef4444" rx="1"/>
+              <text x="132" y="158" fill="#94a3b8" font-size="7">Flagged (&lt;10m or &gt;60m)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── GPS MAP ── -->
+      <div class="para-section">
+        <div class="para-section-label">Geolocation Quality Map — GPS Clusters &amp; Interviewer Coverage</div>
+        <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;overflow:hidden">
+          <div style="padding:10px 14px;border-bottom:1px solid #1e2d45;font-size:9px;color:#64748b;display:flex;gap:16px;flex-wrap:wrap">
+            <span style="color:#22c55e">● Clean</span>
+            <span style="color:#eab308">● Low Risk</span>
+            <span style="color:#f97316">● Medium Risk</span>
+            <span style="color:#ef4444">● Critical</span>
+          </div>
+          <div id="pd_gpsMap" style="height:300px;width:100%;background:#0a0f1a;position:relative;overflow:hidden">
+            <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+              <!-- dark map background -->
+              <rect width="760" height="300" fill="#0a0f1a"/>
+              <!-- subtle terrain grid -->
+              <line x1="0" y1="75"  x2="760" y2="75"  stroke="#0d1e30" stroke-width="1"/>
+              <line x1="0" y1="150" x2="760" y2="150" stroke="#0d1e30" stroke-width="1"/>
+              <line x1="0" y1="225" x2="760" y2="225" stroke="#0d1e30" stroke-width="1"/>
+              <line x1="190" y1="0" x2="190" y2="300" stroke="#0d1e30" stroke-width="1"/>
+              <line x1="380" y1="0" x2="380" y2="300" stroke="#0d1e30" stroke-width="1"/>
+              <line x1="570" y1="0" x2="570" y2="300" stroke="#0d1e30" stroke-width="1"/>
+              <!-- road/river lines for realism -->
+              <path d="M80,280 Q200,200 320,180 Q440,160 580,90 Q650,60 720,40" fill="none" stroke="#0f2035" stroke-width="3"/>
+              <path d="M0,140 Q100,130 200,160 Q300,190 400,170 Q500,150 620,200 Q680,230 760,220" fill="none" stroke="#0f2035" stroke-width="2"/>
+              <!-- GPS cluster halos (coverage area) -->
+              <circle cx="155" cy="165" r="50" fill="#22c55e" fill-opacity="0.05" stroke="#22c55e" stroke-opacity="0.15" stroke-width="1"/>
+              <circle cx="290" cy="130" r="55" fill="#f97316" fill-opacity="0.05" stroke="#f97316" stroke-opacity="0.15" stroke-width="1"/>
+              <circle cx="430" cy="185" r="48" fill="#eab308" fill-opacity="0.05" stroke="#eab308" stroke-opacity="0.15" stroke-width="1"/>
+              <circle cx="200" cy="60"  r="42" fill="#ef4444" fill-opacity="0.05" stroke="#ef4444" stroke-opacity="0.12" stroke-width="1"/>
+              <circle cx="555" cy="110" r="52" fill="#22c55e" fill-opacity="0.05" stroke="#22c55e" stroke-opacity="0.15" stroke-width="1"/>
+              <circle cx="390" cy="55"  r="38" fill="#f97316" fill-opacity="0.05" stroke="#f97316" stroke-opacity="0.15" stroke-width="1"/>
+              <circle cx="620" cy="220" r="44" fill="#22c55e" fill-opacity="0.05" stroke="#22c55e" stroke-opacity="0.15" stroke-width="1"/>
+              <circle cx="110" cy="235" r="40" fill="#ef4444" fill-opacity="0.05" stroke="#ef4444" stroke-opacity="0.12" stroke-width="1"/>
+              <!-- Individual GPS dots (interviews) — scattered within cluster areas -->
+              <!-- Cluster A. Kamara - Clean (green) around 155,165 -->
+              <circle cx="148" cy="158" r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <circle cx="162" cy="170" r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <circle cx="145" cy="178" r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <circle cx="168" cy="155" r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <circle cx="155" cy="145" r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <circle cx="172" cy="180" r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <!-- Cluster B. Sesay - Medium (orange) around 290,130 -->
+              <circle cx="283" cy="122" r="3" fill="#f97316" fill-opacity="0.7"/>
+              <circle cx="298" cy="138" r="3" fill="#f97316" fill-opacity="0.7"/>
+              <circle cx="278" cy="140" r="3" fill="#f97316" fill-opacity="0.7"/>
+              <circle cx="305" cy="122" r="3" fill="#f97316" fill-opacity="0.7"/>
+              <circle cx="290" cy="112" r="3" fill="#f97316" fill-opacity="0.7"/>
+              <!-- Cluster C. Conteh - Low (yellow) around 430,185 -->
+              <circle cx="422" cy="178" r="3" fill="#eab308" fill-opacity="0.7"/>
+              <circle cx="440" cy="192" r="3" fill="#eab308" fill-opacity="0.7"/>
+              <circle cx="432" cy="168" r="3" fill="#eab308" fill-opacity="0.7"/>
+              <circle cx="418" cy="195" r="3" fill="#eab308" fill-opacity="0.7"/>
+              <!-- Cluster D. Koroma - Critical (red) around 200,60 -->
+              <circle cx="193" cy="54" r="3" fill="#ef4444" fill-opacity="0.8"/>
+              <circle cx="208" cy="65" r="3" fill="#ef4444" fill-opacity="0.8"/>
+              <circle cx="197" cy="72" r="3" fill="#ef4444" fill-opacity="0.8"/>
+              <circle cx="215" cy="52" r="3" fill="#ef4444" fill-opacity="0.8"/>
+              <!-- Cluster E. Bangura - Clean (green) around 555,110 -->
+              <circle cx="548" cy="103" r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <circle cx="562" cy="118" r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <circle cx="545" cy="120" r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <circle cx="568" cy="104" r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <circle cx="555" cy="92"  r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <circle cx="572" cy="128" r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <circle cx="540" cy="112" r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <!-- Cluster F. Jalloh - Medium (orange) around 390,55 -->
+              <circle cx="383" cy="48" r="3" fill="#f97316" fill-opacity="0.7"/>
+              <circle cx="398" cy="62" r="3" fill="#f97316" fill-opacity="0.7"/>
+              <circle cx="380" cy="64" r="3" fill="#f97316" fill-opacity="0.7"/>
+              <!-- Cluster G. Turay - Clean (green) around 620,220 -->
+              <circle cx="613" cy="213" r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <circle cx="628" cy="228" r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <circle cx="615" cy="232" r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <circle cx="635" cy="215" r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <circle cx="622" cy="205" r="3" fill="#22c55e" fill-opacity="0.7"/>
+              <!-- Cluster H. Fofana - Critical (red) around 110,235 -->
+              <circle cx="103" cy="228" r="3" fill="#ef4444" fill-opacity="0.8"/>
+              <circle cx="118" cy="240" r="3" fill="#ef4444" fill-opacity="0.8"/>
+              <circle cx="108" cy="248" r="3" fill="#ef4444" fill-opacity="0.8"/>
+              <!-- Main marker pins with labels -->
+              <g transform="translate(155,165)">
+                <circle r="9" fill="#22c55e" fill-opacity="0.9" stroke="#fff" stroke-width="1.5"/>
+                <text y="1" text-anchor="middle" fill="#fff" font-size="7.5" font-weight="700" dominant-baseline="middle">A</text>
+                <rect x="14" y="-13" width="64" height="26" fill="#0d1e35" rx="3" stroke="#22c55e" stroke-width="0.5"/>
+                <text x="46" y="-3" text-anchor="middle" fill="#22c55e" font-size="6.5" font-weight="600">A. Kamara</text>
+                <text x="46" y="8"  text-anchor="middle" fill="#94a3b8" font-size="6">n=94 · Clean</text>
+              </g>
+              <g transform="translate(290,130)">
+                <circle r="9" fill="#f97316" fill-opacity="0.9" stroke="#fff" stroke-width="1.5"/>
+                <text y="1" text-anchor="middle" fill="#fff" font-size="7.5" font-weight="700" dominant-baseline="middle">B</text>
+                <rect x="14" y="-13" width="64" height="26" fill="#0d1e35" rx="3" stroke="#f97316" stroke-width="0.5"/>
+                <text x="46" y="-3" text-anchor="middle" fill="#f97316" font-size="6.5" font-weight="600">B. Sesay</text>
+                <text x="46" y="8"  text-anchor="middle" fill="#94a3b8" font-size="6">n=87 · Medium</text>
+              </g>
+              <g transform="translate(430,185)">
+                <circle r="9" fill="#eab308" fill-opacity="0.9" stroke="#fff" stroke-width="1.5"/>
+                <text y="1" text-anchor="middle" fill="#fff" font-size="7.5" font-weight="700" dominant-baseline="middle">C</text>
+                <rect x="14" y="-13" width="64" height="26" fill="#0d1e35" rx="3" stroke="#eab308" stroke-width="0.5"/>
+                <text x="46" y="-3" text-anchor="middle" fill="#eab308" font-size="6.5" font-weight="600">C. Conteh</text>
+                <text x="46" y="8"  text-anchor="middle" fill="#94a3b8" font-size="6">n=76 · Low</text>
+              </g>
+              <g transform="translate(200,60)">
+                <circle r="9" fill="#ef4444" fill-opacity="0.9" stroke="#fff" stroke-width="1.5"/>
+                <text y="1" text-anchor="middle" fill="#fff" font-size="7.5" font-weight="700" dominant-baseline="middle">D</text>
+                <rect x="14" y="-13" width="68" height="26" fill="#0d1e35" rx="3" stroke="#ef4444" stroke-width="0.5"/>
+                <text x="48" y="-3" text-anchor="middle" fill="#ef4444" font-size="6.5" font-weight="600">D. Koroma ⚠</text>
+                <text x="48" y="8"  text-anchor="middle" fill="#94a3b8" font-size="6">n=68 · Critical</text>
+              </g>
+              <g transform="translate(555,110)">
+                <circle r="9" fill="#22c55e" fill-opacity="0.9" stroke="#fff" stroke-width="1.5"/>
+                <text y="1" text-anchor="middle" fill="#fff" font-size="7.5" font-weight="700" dominant-baseline="middle">E</text>
+                <rect x="14" y="-13" width="68" height="26" fill="#0d1e35" rx="3" stroke="#22c55e" stroke-width="0.5"/>
+                <text x="48" y="-3" text-anchor="middle" fill="#22c55e" font-size="6.5" font-weight="600">E. Bangura</text>
+                <text x="48" y="8"  text-anchor="middle" fill="#94a3b8" font-size="6">n=112 · Clean</text>
+              </g>
+              <g transform="translate(390,55)">
+                <circle r="9" fill="#f97316" fill-opacity="0.9" stroke="#fff" stroke-width="1.5"/>
+                <text y="1" text-anchor="middle" fill="#fff" font-size="7.5" font-weight="700" dominant-baseline="middle">F</text>
+                <rect x="14" y="-13" width="64" height="26" fill="#0d1e35" rx="3" stroke="#f97316" stroke-width="0.5"/>
+                <text x="46" y="-3" text-anchor="middle" fill="#f97316" font-size="6.5" font-weight="600">F. Jalloh</text>
+                <text x="46" y="8"  text-anchor="middle" fill="#94a3b8" font-size="6">n=55 · Medium</text>
+              </g>
+              <g transform="translate(620,220)">
+                <circle r="9" fill="#22c55e" fill-opacity="0.9" stroke="#fff" stroke-width="1.5"/>
+                <text y="1" text-anchor="middle" fill="#fff" font-size="7.5" font-weight="700" dominant-baseline="middle">G</text>
+                <rect x="-78" y="-13" width="64" height="26" fill="#0d1e35" rx="3" stroke="#22c55e" stroke-width="0.5"/>
+                <text x="-46" y="-3" text-anchor="middle" fill="#22c55e" font-size="6.5" font-weight="600">G. Turay</text>
+                <text x="-46" y="8"  text-anchor="middle" fill="#94a3b8" font-size="6">n=88 · Clean</text>
+              </g>
+              <g transform="translate(110,235)">
+                <circle r="9" fill="#ef4444" fill-opacity="0.9" stroke="#fff" stroke-width="1.5"/>
+                <text y="1" text-anchor="middle" fill="#fff" font-size="7.5" font-weight="700" dominant-baseline="middle">H</text>
+                <rect x="14" y="-26" width="68" height="26" fill="#0d1e35" rx="3" stroke="#ef4444" stroke-width="0.5"/>
+                <text x="48" y="-16" text-anchor="middle" fill="#ef4444" font-size="6.5" font-weight="600">H. Fofana ⚠</text>
+                <text x="48" y="-5"  text-anchor="middle" fill="#94a3b8" font-size="6">n=44 · Critical</text>
+              </g>
+              <!-- Coordinate labels -->
+              <text x="6" y="12" fill="#1e3050" font-size="7">8.6°N</text>
+              <text x="6" y="150" fill="#1e3050" font-size="7">8.4°N</text>
+              <text x="6" y="290" fill="#1e3050" font-size="7">8.2°N</text>
+              <text x="60"  y="298" fill="#1e3050" font-size="7">-13.2°E</text>
+              <text x="330" y="298" fill="#1e3050" font-size="7">-12.8°E</text>
+              <text x="620" y="298" fill="#1e3050" font-size="7">-12.4°E</text>
+              <!-- Scale bar -->
+              <line x1="640" y1="275" x2="720" y2="275" stroke="#1e3050" stroke-width="1.5"/>
+              <line x1="640" y1="270" x2="640" y2="280" stroke="#1e3050" stroke-width="1.5"/>
+              <line x1="720" y1="270" x2="720" y2="280" stroke="#1e3050" stroke-width="1.5"/>
+              <text x="680" y="270" fill="#1e3050" font-size="6.5" text-anchor="middle">~20 km</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CHARTS ROW 2: Regional + Risk Distribution ── -->
+      <div class="para-section">
+        <div class="para-section-label">Regional Progress vs Target &amp; Risk Score Distribution</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:16px">
+            <div style="font-size:10px;font-weight:600;color:#94a3b8;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #1e2d45">🏆 Regional Completion vs Target</div>
+            <svg viewBox="0 0 320 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:170px">
+              <!-- grid -->
+              <line x1="38" y1="10" x2="38" y2="120" stroke="#1e2d45" stroke-width="1"/>
+              <line x1="38" y1="120" x2="316" y2="120" stroke="#1e2d45" stroke-width="1"/>
+              <line x1="38" y1="90" x2="316" y2="90" stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="3,3"/>
+              <line x1="38" y1="60" x2="316" y2="60" stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="3,3"/>
+              <line x1="38" y1="30" x2="316" y2="30" stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="3,3"/>
+              <text x="34" y="123" fill="#64748b" font-size="7" text-anchor="end">0</text>
+              <text x="34" y="93" fill="#64748b" font-size="7" text-anchor="end">100</text>
+              <text x="34" y="63" fill="#64748b" font-size="7" text-anchor="end">250</text>
+              <text x="34" y="33" fill="#64748b" font-size="7" text-anchor="end">400</text>
+              <!-- Groups: Completed=[312,287,198,267,220] Target=[400,350,300,350,400] max=400→110px -->
+              <!-- x step = (316-38)/5 = 55.6, bar width=18, gap=4 -->
+              <!-- Western: comp=312 → 312/400*110=85.8 → height=86, y=34 -->
+              <rect x="46"  y="34"  width="18" height="86" fill="#3b82f6" rx="2"/>
+              <rect x="66"  y="10"  width="18" height="110" fill="#1e2d45" rx="2"/>
+              <!-- Northern: 287→79, 350→96 -->
+              <rect x="101" y="41"  width="18" height="79" fill="#3b82f6" rx="2"/>
+              <rect x="121" y="24"  width="18" height="96" fill="#1e2d45" rx="2"/>
+              <!-- Eastern: 198→54, 300→82 -->
+              <rect x="156" y="66"  width="18" height="54" fill="#3b82f6" rx="2"/>
+              <rect x="176" y="38"  width="18" height="82" fill="#1e2d45" rx="2"/>
+              <!-- Southern: 267→73, 350→96 -->
+              <rect x="211" y="47"  width="18" height="73" fill="#3b82f6" rx="2"/>
+              <rect x="231" y="24"  width="18" height="96" fill="#1e2d45" rx="2"/>
+              <!-- NW: 220→60, 400→110 -->
+              <rect x="266" y="60"  width="18" height="60" fill="#3b82f6" rx="2"/>
+              <rect x="286" y="10"  width="18" height="110" fill="#1e2d45" rx="2"/>
+              <!-- Values on bars -->
+              <text x="55"  y="31"  fill="#3b82f6" font-size="6.5" text-anchor="middle">312</text>
+              <text x="75"  y="8"   fill="#64748b"  font-size="6.5" text-anchor="middle">400</text>
+              <text x="110" y="38"  fill="#3b82f6" font-size="6.5" text-anchor="middle">287</text>
+              <text x="130" y="22"  fill="#64748b"  font-size="6.5" text-anchor="middle">350</text>
+              <text x="165" y="63"  fill="#3b82f6" font-size="6.5" text-anchor="middle">198</text>
+              <text x="185" y="36"  fill="#64748b"  font-size="6.5" text-anchor="middle">300</text>
+              <text x="220" y="44"  fill="#3b82f6" font-size="6.5" text-anchor="middle">267</text>
+              <text x="240" y="22"  fill="#64748b"  font-size="6.5" text-anchor="middle">350</text>
+              <text x="275" y="57"  fill="#3b82f6" font-size="6.5" text-anchor="middle">220</text>
+              <text x="295" y="8"   fill="#64748b"  font-size="6.5" text-anchor="middle">400</text>
+              <!-- x-axis labels -->
+              <text x="65"  y="132" fill="#64748b" font-size="7" text-anchor="middle">Western</text>
+              <text x="120" y="132" fill="#64748b" font-size="7" text-anchor="middle">Northern</text>
+              <text x="175" y="132" fill="#64748b" font-size="7" text-anchor="middle">Eastern</text>
+              <text x="230" y="132" fill="#64748b" font-size="7" text-anchor="middle">Southern</text>
+              <text x="285" y="132" fill="#64748b" font-size="7" text-anchor="middle">NW</text>
+              <!-- legend -->
+              <rect x="40"  y="144" width="10" height="8" fill="#3b82f6" rx="1"/>
+              <text x="53" y="151" fill="#94a3b8" font-size="7">Completed</text>
+              <rect x="115" y="144" width="10" height="8" fill="#1e2d45" rx="1" stroke="#3b82f6" stroke-width="0.5"/>
+              <text x="128" y="151" fill="#94a3b8" font-size="7">Target</text>
+            </svg>
+          </div>
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:16px">
+            <div style="font-size:10px;font-weight:600;color:#94a3b8;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #1e2d45">📊 Risk Score Distribution (Weighted Composite 0–10)</div>
+            <svg viewBox="0 0 320 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:170px">
+              <!-- grid -->
+              <line x1="38" y1="10" x2="38" y2="120" stroke="#1e2d45" stroke-width="1"/>
+              <line x1="38" y1="120" x2="316" y2="120" stroke="#1e2d45" stroke-width="1"/>
+              <line x1="38" y1="90"  x2="316" y2="90"  stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="3,3"/>
+              <line x1="38" y1="60"  x2="316" y2="60"  stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="3,3"/>
+              <line x1="38" y1="30"  x2="316" y2="30"  stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="3,3"/>
+              <text x="34" y="123" fill="#64748b" font-size="7" text-anchor="end">0</text>
+              <text x="34" y="93"  fill="#64748b" font-size="7" text-anchor="end">100</text>
+              <text x="34" y="63"  fill="#64748b" font-size="7" text-anchor="end">300</text>
+              <text x="34" y="33"  fill="#64748b" font-size="7" text-anchor="end">500</text>
+              <!-- data=[342,489,287,118,48] max=489 → 110px -->
+              <!-- bar width=46, start at 44, gap=12 -->
+              <rect x="44"  y="43"  width="46" height="77" fill="#22c55e" rx="2"/><!-- 342 →77 -->
+              <rect x="102" y="10"  width="46" height="110" fill="#86efac" rx="2"/><!-- 489→110 -->
+              <rect x="160" y="55"  width="46" height="65" fill="#eab308" rx="2"/><!-- 287→65 -->
+              <rect x="218" y="93"  width="46" height="27" fill="#f97316" rx="2"/><!-- 118→27 -->
+              <rect x="276" y="109" width="46" height="11" fill="#ef4444" rx="2"/><!-- 48→11 -->
+              <!-- value labels -->
+              <text x="67"  y="40"  fill="#22c55e" font-size="7.5" text-anchor="middle" font-weight="600">342</text>
+              <text x="125" y="7"   fill="#86efac" font-size="7.5" text-anchor="middle" font-weight="600">489</text>
+              <text x="183" y="52"  fill="#eab308" font-size="7.5" text-anchor="middle" font-weight="600">287</text>
+              <text x="241" y="90"  fill="#f97316" font-size="7.5" text-anchor="middle" font-weight="600">118</text>
+              <text x="299" y="106" fill="#ef4444" font-size="7.5" text-anchor="middle" font-weight="600">48</text>
+              <!-- x-axis labels -->
+              <text x="67"  y="132" fill="#64748b" font-size="6.5" text-anchor="middle">Clean (0)</text>
+              <text x="125" y="132" fill="#64748b" font-size="6.5" text-anchor="middle">Low (1-2)</text>
+              <text x="183" y="132" fill="#64748b" font-size="6.5" text-anchor="middle">Med (3-4)</text>
+              <text x="241" y="132" fill="#64748b" font-size="6.5" text-anchor="middle">High (5-6)</text>
+              <text x="299" y="132" fill="#64748b" font-size="6.5" text-anchor="middle">Crit (7+)</text>
+              <!-- % annotation -->
+              <text x="67"  y="143" fill="#475569" font-size="6" text-anchor="middle">27%</text>
+              <text x="125" y="143" fill="#475569" font-size="6" text-anchor="middle">38%</text>
+              <text x="183" y="143" fill="#475569" font-size="6" text-anchor="middle">22%</text>
+              <text x="241" y="143" fill="#475569" font-size="6" text-anchor="middle">9%</text>
+              <text x="299" y="143" fill="#475569" font-size="6" text-anchor="middle">4%</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 4-COL DETAIL: Quality Flags · Duration Econometrics · Fraud Detection · Interviewer Efficiency ── -->
+      <div class="para-section">
+        <div class="para-section-label">Detailed Quality Diagnostics</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px">
+
+          <!-- Quality flags -->
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:16px">
+            <div style="font-size:10px;font-weight:600;color:#94a3b8;margin-bottom:10px">⚠ Quality Flag Inventory</div>
+            <div style="max-height:240px;overflow-y:auto">
+              <div class="para-table" style="width:100%">
+                <table style="width:100%;border-collapse:collapse;font-size:9px">
+                  <tbody>
+                    <tr style="border-bottom:1px solid #161d2e"><td style="padding:6px 4px;color:#e2e8f0"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#ef4444;margin-right:6px"></span>Too Fast (&lt;10 min)</td><td style="padding:6px 4px;color:#ef4444;text-align:right;font-weight:600">10</td><td style="padding:6px 4px;color:#64748b;text-align:right">0.8%</td></tr>
+                    <tr style="border-bottom:1px solid #161d2e"><td style="padding:6px 4px;color:#e2e8f0"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f97316;margin-right:6px"></span>Too Slow (&gt;90 min)</td><td style="padding:6px 4px;color:#f97316;text-align:right;font-weight:600">21</td><td style="padding:6px 4px;color:#64748b;text-align:right">1.6%</td></tr>
+                    <tr style="border-bottom:1px solid #161d2e"><td style="padding:6px 4px;color:#e2e8f0"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#eab308;margin-right:6px"></span>Excessive Edits (&gt;50)</td><td style="padding:6px 4px;color:#eab308;text-align:right;font-weight:600">28</td><td style="padding:6px 4px;color:#64748b;text-align:right">2.2%</td></tr>
+                    <tr style="border-bottom:1px solid #161d2e"><td style="padding:6px 4px;color:#e2e8f0"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#ef4444;margin-right:6px"></span>High Errors (&gt;5 invalid)</td><td style="padding:6px 4px;color:#ef4444;text-align:right;font-weight:600">89</td><td style="padding:6px 4px;color:#64748b;text-align:right">6.9%</td></tr>
+                    <tr style="border-bottom:1px solid #161d2e"><td style="padding:6px 4px;color:#e2e8f0"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#a855f7;margin-right:6px"></span>Missing GPS</td><td style="padding:6px 4px;color:#a855f7;text-align:right;font-weight:600">83</td><td style="padding:6px 4px;color:#64748b;text-align:right">6.5%</td></tr>
+                    <tr style="border-bottom:1px solid #161d2e"><td style="padding:6px 4px;color:#e2e8f0"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#ef4444;margin-right:6px"></span>Rejected by HQ</td><td style="padding:6px 4px;color:#ef4444;text-align:right;font-weight:600">47</td><td style="padding:6px 4px;color:#64748b;text-align:right">3.7%</td></tr>
+                    <tr style="border-bottom:1px solid #161d2e"><td style="padding:6px 4px;color:#e2e8f0"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#06b6d4;margin-right:6px"></span>Night Interviews (20–05h)</td><td style="padding:6px 4px;color:#06b6d4;text-align:right;font-weight:600">14</td><td style="padding:6px 4px;color:#64748b;text-align:right">1.1%</td></tr>
+                    <tr style="border-bottom:1px solid #161d2e"><td style="padding:6px 4px;color:#e2e8f0"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3b82f6;margin-right:6px"></span>Poor GPS Accuracy (&gt;50m)</td><td style="padding:6px 4px;color:#3b82f6;text-align:right;font-weight:600">12</td><td style="padding:6px 4px;color:#64748b;text-align:right">0.9%</td></tr>
+                    <tr style="border-bottom:1px solid #161d2e"><td style="padding:6px 4px;color:#e2e8f0"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#ec4899;margin-right:6px"></span>Straightlining (identical answers)</td><td style="padding:6px 4px;color:#ec4899;text-align:right;font-weight:600">18</td><td style="padding:6px 4px;color:#64748b;text-align:right">1.4%</td></tr>
+                    <tr><td style="padding:6px 4px;color:#e2e8f0"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#14b8a6;margin-right:6px"></span>Duplicate GPS Coordinates</td><td style="padding:6px 4px;color:#14b8a6;text-align:right;font-weight:600">7</td><td style="padding:6px 4px;color:#64748b;text-align:right">0.5%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Duration econometrics -->
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:16px">
+            <div style="font-size:10px;font-weight:600;color:#94a3b8;margin-bottom:10px">📐 Duration Econometrics <span style="color:#64748b;font-weight:400">n=1,284</span></div>
+            <div style="font-size:10px;display:flex;flex-direction:column;gap:6px;margin-bottom:12px">
+              <div style="display:flex;justify-content:space-between"><span style="color:#94a3b8">Mean (minutes)</span><span style="font-weight:600;color:#e2e8f0">28.4</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:#94a3b8">Median</span><span style="font-weight:600;color:#e2e8f0">26.3</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:#94a3b8">Std Deviation</span><span style="font-weight:600;color:#e2e8f0">±14.2</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:#94a3b8">Coeff. of Variation</span><span style="font-weight:600;color:#e2e8f0">0.50</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:#94a3b8">Skewness</span><span style="font-weight:600;color:#e2e8f0">+1.87 (right-tailed)</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:#94a3b8">Kurtosis</span><span style="font-weight:600;color:#e2e8f0">5.23 (leptokurtic)</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:#94a3b8">Outliers (&gt;Q3+1.5 IQR)</span><span style="font-weight:600;color:#ef4444">43 (3.3%)</span></div>
+            </div>
+            <div style="border-top:1px solid #1e2d45;padding-top:10px;font-size:9px;color:#64748b;display:flex;flex-direction:column;gap:4px">
+              <div>📊 ANOVA by Interviewer: F=4.23 (p=0.001***)</div>
+              <div>📈 Speed–Accuracy Corr: r = −0.31 (p=0.02*)</div>
+              <div>⏱ Optimal Range: 20–35 minutes</div>
+              <div style="color:#eab308">⚠ Outside optimal: 342 interviews (26.6%)</div>
+            </div>
+          </div>
+
+          <!-- Fraud detection -->
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:16px">
+            <div style="font-size:10px;font-weight:600;color:#94a3b8;margin-bottom:10px">🚨 Fraud Detection Signals</div>
+            <div style="display:flex;flex-direction:column;gap:6px;font-size:9px;margin-bottom:12px">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 8px;background:#0a0a12;border-radius:5px"><div style="display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#ef4444;display:inline-block"></span>Duplicate GPS (same location)</div><span style="color:#ef4444;font-weight:600">7 ivws · 2 int.</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 8px;background:#0a0a12;border-radius:5px"><div style="display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#f97316;display:inline-block"></span>Pattern Answering (A/B/C/D cycle)</div><span style="color:#f97316;font-weight:600">12 ivws</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 8px;background:#0a0a12;border-radius:5px"><div style="display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#eab308;display:inline-block"></span>Impossibly Fast (&lt;5 min)</div><span style="color:#eab308;font-weight:600">3 ivws</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 8px;background:#0a0a12;border-radius:5px"><div style="display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#a855f7;display:inline-block"></span>No GPS + Too Fast (combo)</div><span style="color:#a855f7;font-weight:600">5 · HIGH RISK</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 8px;background:#0a0a12;border-radius:5px"><div style="display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#ec4899;display:inline-block"></span>Unusual hours (03–05 AM)</div><span style="color:#ec4899;font-weight:600">4 ivws</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 8px;background:#0a0a12;border-radius:5px"><div style="display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#06b6d4;display:inline-block"></span>Same respondent demographics</div><span style="color:#06b6d4;font-weight:600">9 · potential clone</span></div>
+            </div>
+            <div style="background:#1a0a0a;padding:10px;border-radius:6px;border-left:3px solid #ef4444">
+              <div style="font-size:9px;color:#ef4444;font-weight:600;margin-bottom:3px">⚠ CRITICAL ALERT</div>
+              <div style="font-size:8px;color:#94a3b8">INT-04 · D. Koroma: 67 edits, 19 errors, 8 rejections. Multiple fraud signals. Immediate supervisor review recommended.</div>
+            </div>
+          </div>
+
+          <!-- Interviewer efficiency -->
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:16px">
+            <div style="font-size:10px;font-weight:600;color:#94a3b8;margin-bottom:10px">👥 Interviewer Efficiency Metrics</div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:12px">
+              <div><div style="display:flex;justify-content:space-between;font-size:9px;margin-bottom:3px"><span style="color:#94a3b8">Avg interviews/day (active)</span><span style="font-weight:600">8.7</span></div><div style="height:5px;background:#1a1a2e;border-radius:3px"><div style="height:100%;width:72%;background:#3b82f6;border-radius:3px"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:9px;margin-bottom:3px"><span style="color:#94a3b8">Interviewers below target (&lt;5/day)</span><span style="font-weight:600;color:#f97316">4 (22%)</span></div><div style="height:5px;background:#1a1a2e;border-radius:3px"><div style="height:100%;width:22%;background:#f97316;border-radius:3px"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:9px;margin-bottom:3px"><span style="color:#94a3b8">Interviewers with &gt;10% error rate</span><span style="font-weight:600;color:#ef4444">3 (17%)</span></div><div style="height:5px;background:#1a1a2e;border-radius:3px"><div style="height:100%;width:17%;background:#ef4444;border-radius:3px"></div></div></div>
+            </div>
+            <div style="border-top:1px solid #1e2d45;padding-top:10px;font-size:9px;color:#64748b;display:flex;flex-direction:column;gap:4px">
+              <div>🏆 Top: E. Bangura — 112 interviews, 0 errors, 0 edits</div>
+              <div style="color:#f97316">📉 Review: H. Fofana — 44 interviews, 23 errors, 89 edits</div>
+              <div>📊 Team productivity CV: 0.34</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ROW 3: Time-of-Day + Edits by Section + Forecast ── -->
+      <div class="para-section">
+        <div class="para-section-label">Time-of-Day Analysis · Answer Edit Patterns · Completion Forecast</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:16px">
+            <div style="font-size:10px;font-weight:600;color:#94a3b8;margin-bottom:10px">🌙 Interview Start Times</div>
+            <svg viewBox="0 0 260 145" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:145px">
+              <line x1="22" y1="8" x2="22" y2="108" stroke="#1e2d45" stroke-width="1"/>
+              <line x1="22" y1="108" x2="256" y2="108" stroke="#1e2d45" stroke-width="1"/>
+              <line x1="22" y1="78" x2="256" y2="78" stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="2,3"/>
+              <line x1="22" y1="48" x2="256" y2="48" stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="2,3"/>
+              <line x1="22" y1="18" x2="256" y2="18" stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="2,3"/>
+              <text x="18" y="111" fill="#64748b" font-size="6" text-anchor="end">0</text>
+              <text x="18" y="81"  fill="#64748b" font-size="6" text-anchor="end">60</text>
+              <text x="18" y="51"  fill="#64748b" font-size="6" text-anchor="end">120</text>
+              <text x="18" y="21"  fill="#64748b" font-size="6" text-anchor="end">200</text>
+              <!-- data=[2,1,3,18,142,198,187,203,162,118,52,38] max=203→100px -->
+              <!-- 12 points, x step = (256-22)/11 = 21.3 -->
+              <!-- y = 108 - (v/203)*100 -->
+              <!-- pts: (22,107)(43,107)(64,107)(86,99)(107,38)(128,10)(149,16)(170,8)(192,28)(213,50)(234,83)(256,89) -->
+              <polygon points="22,107 43,107 64,107 86,99 107,38 128,10 149,16 170,8 192,28 213,50 234,83 256,89 256,108 22,108"
+                fill="#06b6d4" fill-opacity="0.12"/>
+              <polyline points="22,107 43,107 64,107 86,99 107,38 128,10 149,16 170,8 192,28 213,50 234,83 256,89"
+                fill="none" stroke="#06b6d4" stroke-width="2" stroke-linejoin="round"/>
+              <!-- dots at key peaks -->
+              <circle cx="170" cy="8"  r="3" fill="#06b6d4"/>
+              <circle cx="128" cy="10" r="3" fill="#06b6d4"/>
+              <circle cx="213" cy="50" r="3" fill="#06b6d4"/>
+              <!-- x labels -->
+              <text x="22"  y="118" fill="#64748b" font-size="5.5" text-anchor="middle">0-2</text>
+              <text x="64"  y="118" fill="#64748b" font-size="5.5" text-anchor="middle">4-6</text>
+              <text x="107" y="118" fill="#64748b" font-size="5.5" text-anchor="middle">8-10</text>
+              <text x="149" y="118" fill="#64748b" font-size="5.5" text-anchor="middle">12-14</text>
+              <text x="192" y="118" fill="#64748b" font-size="5.5" text-anchor="middle">16-18</text>
+              <text x="234" y="118" fill="#64748b" font-size="5.5" text-anchor="middle">20-22</text>
+              <!-- peak annotation -->
+              <line x1="170" y1="8" x2="185" y2="22" stroke="#06b6d4" stroke-width="0.8" stroke-dasharray="2,2"/>
+              <text x="186" y="21" fill="#06b6d4" font-size="6">203</text>
+              <text x="186" y="29" fill="#64748b" font-size="5.5">14-16h</text>
+            </svg>
+            <div style="margin-top:10px;font-size:8px;color:#64748b;display:flex;flex-direction:column;gap:3px">
+              <div style="color:#22c55e">🟢 Optimal (08–17h): 892 (69.5%)</div>
+              <div style="color:#eab308">🟡 Evening (17–20h): 284 (22.1%)</div>
+              <div style="color:#ef4444">🔴 Night (20–05h): 108 (8.4%) — 14 flagged</div>
+            </div>
+          </div>
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:16px">
+            <div style="font-size:10px;font-weight:600;color:#94a3b8;margin-bottom:10px">🔄 Edits per Section</div>
+            <svg viewBox="0 0 260 145" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:145px">
+              <!-- horizontal bar chart: data=[1.2,.6,.4,.3,.2,.1] max=1.2 → 180px wide -->
+              <!-- 6 sections, each row height=20, start y=12 -->
+              <text x="0" y="9" fill="#64748b" font-size="6.5">Section</text>
+              <text x="255" y="9" fill="#64748b" font-size="6.5" text-anchor="end">Avg edits</text>
+              <!-- Demographics: 1.2/1.2=100% → 180 -->
+              <text x="68" y="24"  fill="#94a3b8" font-size="7" text-anchor="end">Demographics</text>
+              <rect x="72" y="15"  width="180" height="12" fill="#eab308" rx="2"/>
+              <text x="255" y="24"  fill="#eab308" font-size="7" text-anchor="end">1.2</text>
+              <!-- Livelihoods: 0.6 → 90 -->
+              <text x="68" y="44"  fill="#94a3b8" font-size="7" text-anchor="end">Livelihoods</text>
+              <rect x="72" y="35"  width="90" height="12" fill="#eab308" rx="2" fill-opacity="0.75"/>
+              <text x="165" y="44"  fill="#eab308" font-size="7">0.6</text>
+              <!-- Expenditure: 0.4 → 60 -->
+              <text x="68" y="64"  fill="#94a3b8" font-size="7" text-anchor="end">Expenditure</text>
+              <rect x="72" y="55"  width="60" height="12" fill="#eab308" rx="2" fill-opacity="0.6"/>
+              <text x="135" y="64"  fill="#eab308" font-size="7">0.4</text>
+              <!-- Agriculture: 0.3 → 45 -->
+              <text x="68" y="84"  fill="#94a3b8" font-size="7" text-anchor="end">Agriculture</text>
+              <rect x="72" y="75"  width="45" height="12" fill="#eab308" rx="2" fill-opacity="0.5"/>
+              <text x="120" y="84"  fill="#eab308" font-size="7">0.3</text>
+              <!-- Health: 0.2 → 30 -->
+              <text x="68" y="104" fill="#94a3b8" font-size="7" text-anchor="end">Health</text>
+              <rect x="72" y="95"  width="30" height="12" fill="#eab308" rx="2" fill-opacity="0.4"/>
+              <text x="105" y="104" fill="#eab308" font-size="7">0.2</text>
+              <!-- Housing: 0.1 → 15 -->
+              <text x="68" y="124" fill="#94a3b8" font-size="7" text-anchor="end">Housing</text>
+              <rect x="72" y="115" width="15" height="12" fill="#eab308" rx="2" fill-opacity="0.3"/>
+              <text x="90"  y="124" fill="#eab308" font-size="7">0.1</text>
+              <!-- baseline line -->
+              <line x1="72" y1="13" x2="72" y2="130" stroke="#1e2d45" stroke-width="1"/>
+            </svg>
+            <div style="margin-top:10px;font-size:8px;color:#64748b;display:flex;flex-direction:column;gap:3px">
+              <div>✏️ Avg edits/interview: 2.8</div>
+              <div>📈 Highest: Demographics (1.2 edits/int)</div>
+              <div style="color:#eab308">⚠ Interviewers &gt;50 edits: 5</div>
+            </div>
+          </div>
+          <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;padding:16px">
+            <div style="font-size:10px;font-weight:600;color:#94a3b8;margin-bottom:10px">📈 Completion Forecast</div>
+            <svg viewBox="0 0 260 145" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:145px">
+              <line x1="28" y1="8" x2="28" y2="110" stroke="#1e2d45" stroke-width="1"/>
+              <line x1="28" y1="110" x2="256" y2="110" stroke="#1e2d45" stroke-width="1"/>
+              <line x1="28" y1="80" x2="256" y2="80" stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="2,3"/>
+              <line x1="28" y1="50" x2="256" y2="50" stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="2,3"/>
+              <line x1="28" y1="20" x2="256" y2="20" stroke="#1e2d45" stroke-width="0.5" stroke-dasharray="2,3"/>
+              <text x="24" y="113" fill="#64748b" font-size="6" text-anchor="end">1200</text>
+              <text x="24" y="83"  fill="#64748b" font-size="6" text-anchor="end">1500</text>
+              <text x="24" y="53"  fill="#64748b" font-size="6" text-anchor="end">1700</text>
+              <text x="24" y="23"  fill="#64748b" font-size="6" text-anchor="end">1850</text>
+              <!-- data=[1284,1460,1580,1670,1735,1780,1800] range 1200-1850=650 → 102px -->
+              <!-- y = 110 - (v-1200)/650*102 -->
+              <!-- 1284→97, 1460→72, 1580→57, 1670→44, 1735→35, 1780→29, 1800→26 -->
+              <!-- 7 points x: 28,66,104,142,180,218,256 -->
+              <!-- target line at 1800 → y=26 -->
+              <line x1="28" y1="26" x2="256" y2="26" stroke="#475569" stroke-width="1" stroke-dasharray="4,3"/>
+              <text x="258" y="29" fill="#475569" font-size="6">Target 1800</text>
+              <!-- fill under forecast -->
+              <polygon points="28,97 66,72 104,57 142,44 180,35 218,29 256,26 256,110 28,110"
+                fill="#ec4899" fill-opacity="0.08"/>
+              <polyline points="28,97 66,72 104,57 142,44 180,35 218,29 256,26"
+                fill="none" stroke="#ec4899" stroke-width="2" stroke-linejoin="round"/>
+              <!-- dots -->
+              <circle cx="28"  cy="97" r="3" fill="#ec4899"/>
+              <circle cx="66"  cy="72" r="3" fill="#ec4899"/>
+              <circle cx="104" cy="57" r="3" fill="#ec4899"/>
+              <circle cx="142" cy="44" r="3" fill="#ec4899"/>
+              <circle cx="180" cy="35" r="3" fill="#ec4899"/>
+              <circle cx="218" cy="29" r="3" fill="#ec4899"/>
+              <circle cx="256" cy="26" r="3" fill="#ec4899"/>
+              <!-- value labels at first & last -->
+              <text x="28"  y="93"  fill="#ec4899" font-size="6" text-anchor="middle">1,284</text>
+              <text x="256" y="22"  fill="#ec4899" font-size="6" text-anchor="middle">1,800</text>
+              <!-- x labels -->
+              <text x="28"  y="121" fill="#64748b" font-size="6" text-anchor="middle">Today</text>
+              <text x="66"  y="121" fill="#64748b" font-size="6" text-anchor="middle">+5d</text>
+              <text x="104" y="121" fill="#64748b" font-size="6" text-anchor="middle">+10d</text>
+              <text x="142" y="121" fill="#64748b" font-size="6" text-anchor="middle">+15d</text>
+              <text x="180" y="121" fill="#64748b" font-size="6" text-anchor="middle">+20d</text>
+              <text x="218" y="121" fill="#64748b" font-size="6" text-anchor="middle">+25d</text>
+              <text x="256" y="121" fill="#64748b" font-size="6" text-anchor="middle">Target</text>
+            </svg>
+            <div style="margin-top:10px;font-size:8px;color:#64748b;display:flex;flex-direction:column;gap:3px">
+              <div>📊 Current: 1,284 · Target: 1,800</div>
+              <div>⚡ Required: 42/day · 7-day avg: 38.6</div>
+              <div style="color:#eab308">⚠ 3.4 interviews/day short of target</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── FULL INTERVIEWER SCORECARD ── -->
+      <div class="para-section">
+        <div class="para-section-label">Interviewer Performance Scorecard — Full Paradata View</div>
+        <div style="background:#0d1117;border:1px solid #1e2d45;border-radius:10px;overflow:hidden">
+          <div style="overflow-x:auto">
+            <table style="width:100%;border-collapse:collapse;font-size:9px;min-width:700px">
+              <thead>
+                <tr style="border-bottom:1px solid #1e2d45">
+                  <th style="padding:8px 8px;color:#64748b;font-weight:500;text-align:left">Interviewer</th>
+                  <th style="padding:8px 6px;color:#64748b;font-weight:500;text-align:right">Done</th>
+                  <th style="padding:8px 6px;color:#64748b;font-weight:500;text-align:right">Rejected</th>
+                  <th style="padding:8px 6px;color:#64748b;font-weight:500;text-align:right">Avg Min</th>
+                  <th style="padding:8px 6px;color:#64748b;font-weight:500;text-align:right">Errors</th>
+                  <th style="padding:8px 6px;color:#64748b;font-weight:500;text-align:right">Edits</th>
+                  <th style="padding:8px 6px;color:#64748b;font-weight:500;text-align:right">GPS%</th>
+                  <th style="padding:8px 6px;color:#64748b;font-weight:500;text-align:right">Night</th>
+                  <th style="padding:8px 6px;color:#64748b;font-weight:500;text-align:right">Risk</th>
+                  <th style="padding:8px 6px;color:#64748b;font-weight:500;text-align:left">Level</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid #161d2e"><td style="padding:7px 8px;color:#e2e8f0">A. Kamara</td><td style="padding:7px 6px;text-align:right;color:#22c55e">94</td><td style="padding:7px 6px;text-align:right;color:#e2e8f0">2</td><td style="padding:7px 6px;text-align:right;color:#e2e8f0">24</td><td style="padding:7px 6px;text-align:right;color:#e2e8f0">3</td><td style="padding:7px 6px;text-align:right;color:#e2e8f0">12</td><td style="padding:7px 6px;text-align:right;color:#22c55e">100%</td><td style="padding:7px 6px;text-align:right;color:#e2e8f0">0</td><td style="padding:7px 6px;text-align:right;font-weight:700">1</td><td style="padding:7px 6px"><span style="background:#22c55e22;color:#22c55e;border-radius:3px;padding:2px 7px;font-size:8px">Clean</span></td></tr>
+                <tr style="border-bottom:1px solid #161d2e;background:#1a0f0a"><td style="padding:7px 8px;color:#f97316">⚠ B. Sesay</td><td style="padding:7px 6px;text-align:right;color:#22c55e">87</td><td style="padding:7px 6px;text-align:right;color:#ef4444">5</td><td style="padding:7px 6px;text-align:right;color:#e2e8f0">31</td><td style="padding:7px 6px;text-align:right;color:#f97316">12</td><td style="padding:7px 6px;text-align:right;color:#f97316">34</td><td style="padding:7px 6px;text-align:right;color:#22c55e">100%</td><td style="padding:7px 6px;text-align:right;color:#eab308">2</td><td style="padding:7px 6px;text-align:right;font-weight:700;color:#f97316">3</td><td style="padding:7px 6px"><span style="background:#f9731622;color:#f97316;border-radius:3px;padding:2px 7px;font-size:8px">Medium</span></td></tr>
+                <tr style="border-bottom:1px solid #161d2e"><td style="padding:7px 8px;color:#e2e8f0">C. Conteh</td><td style="padding:7px 6px;text-align:right;color:#22c55e">76</td><td style="padding:7px 6px;text-align:right;color:#e2e8f0">1</td><td style="padding:7px 6px;text-align:right;color:#e2e8f0">22</td><td style="padding:7px 6px;text-align:right;color:#e2e8f0">2</td><td style="padding:7px 6px;text-align:right;color:#e2e8f0">9</td><td style="padding:7px 6px;text-align:right;color:#f97316">76%</td><td style="padding:7px 6px;text-align:right;color:#eab308">1</td><td style="padding:7px 6px;text-align:right;font-weight:700;color:#eab308">2</td><td style="padding:7px 6px"><span style="background:#eab30822;color:#eab308;border-radius:3px;padding:2px 7px;font-size:8px">Low</span></td></tr>
+                <tr style="border-bottom:1px solid #161d2e;background:#1a0a0a"><td style="padding:7px 8px;color:#ef4444">⚠ D. Koroma</td><td style="padding:7px 6px;text-align:right;color:#22c55e">68</td><td style="padding:7px 6px;text-align:right;color:#ef4444">8</td><td style="padding:7px 6px;text-align:right;color:#ef4444">41</td><td style="padding:7px 6px;text-align:right;color:#ef4444">19</td><td style="padding:7px 6px;text-align:right;color:#ef4444">67</td><td style="padding:7px 6px;text-align:right;color:#22c55e">100%</td><td style="padding:7px 6px;text-align:right;color:#ef4444">3</td><td style="padding:7px 6px;text-align:right;font-weight:700;color:#ef4444">5</td><td style="padding:7px 6px"><span style="background:#ef444422;color:#ef4444;border-radius:3px;padding:2px 7px;font-size:8px">Critical</span></td></tr>
+                <tr style="border-bottom:1px solid #161d2e"><td style="padding:7px 8px;color:#e2e8f0">E. Bangura</td><td style="padding:7px 6px;text-align:right;color:#22c55e">112</td><td style="padding:7px 6px;text-align:right;color:#e2e8f0">0</td><td style="padding:7px 6px;text-align:right;color:#e2e8f0">26</td><td style="padding:7px 6px;text-align:right;color:#e2e8f0">1</td><td style="padding:7px 6px;text-align:right;color:#e2e8f0">7</td><td style="padding:7px 6px;text-align:right;color:#22c55e">100%</td><td style="padding:7px 6px;text-align:right;color:#e2e8f0">0</td><td style="padding:7px 6px;text-align:right;font-weight:700;color:#22c55e">0</td><td style="padding:7px 6px"><span style="background:#22c55e22;color:#22c55e;border-radius:3px;padding:2px 7px;font-size:8px">Clean</span></td></tr>
+                <tr style="border-bottom:1px solid #161d2e"><td style="padding:7px 8px;color:#e2e8f0">F. Jalloh</td><td style="padding:7px 6px;text-align:right;color:#22c55e">55</td><td style="padding:7px 6px;text-align:right;color:#e2e8f0">3</td><td style="padding:7px 6px;text-align:right;color:#e2e8f0">29</td><td style="padding:7px 6px;text-align:right;color:#f97316">7</td><td style="padding:7px 6px;text-align:right;color:#f97316">21</td><td style="padding:7px 6px;text-align:right;color:#f97316">76%</td><td style="padding:7px 6px;text-align:right;color:#eab308">1</td><td style="padding:7px 6px;text-align:right;font-weight:700;color:#f97316">3</td><td style="padding:7px 6px"><span style="background:#f9731622;color:#f97316;border-radius:3px;padding:2px 7px;font-size:8px">Medium</span></td></tr>
+                <tr style="border-bottom:1px solid #161d2e;background:#1a0a0a"><td style="padding:7px 8px;color:#ef4444">⚠ H. Fofana</td><td style="padding:7px 6px;text-align:right;color:#22c55e">44</td><td style="padding:7px 6px;text-align:right;color:#ef4444">6</td><td style="padding:7px 6px;text-align:right;color:#ef4444">48</td><td style="padding:7px 6px;text-align:right;color:#ef4444">23</td><td style="padding:7px 6px;text-align:right;color:#ef4444">89</td><td style="padding:7px 6px;text-align:right;color:#22c55e">100%</td><td style="padding:7px 6px;text-align:right;color:#ef4444">2</td><td style="padding:7px 6px;text-align:right;font-weight:700;color:#ef4444">5</td><td style="padding:7px 6px"><span style="background:#ef444422;color:#ef4444;border-radius:3px;padding:2px 7px;font-size:8px">Critical</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding:8px 12px;border-top:1px solid #1e2d45;font-size:8px;color:#475569">
+            📐 Risk Score = (too_fast×2) + (errors×2) + (edits×0.5) + (no_gps×1) + (rejected×2) + (night_int×0.5) · Range: 0–10
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SHINY BANNER ── -->
+      <div class="para-section" style="margin-bottom:0">
+        <div class="para-section-label">Interactive R Shiny Dashboard</div>
+        <div class="shiny-banner">
+          <div class="shiny-banner-text">
+            <strong>Full paradata QC pipeline in R.</strong> Live Shiny dashboard with composite risk scoring, interviewer breakdowns, GPS map verification, rejection tracking, and automated alerts — connected directly to the Survey Solutions API. Built with <code style="font-size:.78em;color:var(--teal)">SurveySolutionsAPI · taskscheduleR · blastula · Metabase OSS</code>.
+          </div>
+          <a href="#inquiry" class="shiny-link" onclick="closeParadata()">Request dashboard demo →</a>
+        </div>
+      </div>
+
+    </div><!-- /para-drawer-body -->
+
+    <!-- Charts are rendered as inline SVG — no JS initialization needed -->
+
+  </div><!-- /para-drawer-inner -->
+</div><!-- /para-drawer -->
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-bottom" style="max-width:1160px;margin:0 auto;padding:28px 32px;border-top:none;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+    <div class="footer-copy">© 2025 David Atinga · Atinga Survey Research</div>
+    <div style="display:flex;gap:20px;align-items:center">
+      <a href="#inquiry" style="font-size:.73rem;color:rgba(255,255,255,.38);text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color .2s" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.38)'">Inquire</a>
+      <a href="https://davidatinga.netlify.app/" target="_blank" rel="noopener" style="font-size:.73rem;color:rgba(255,255,255,.38);text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color .2s" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.38)'">Portfolio →</a>
+      <a href="https://mysurvey.solutions" target="_blank" rel="noopener" style="font-size:.73rem;color:rgba(255,255,255,.38);text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color .2s" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.38)'">Survey Solutions ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Read more toggle */
+function toggleRM(id, btn) {
+  const el = document.getElementById(id);
+  const open = el.style.display === 'inline';
+  el.style.display = open ? 'none' : 'inline';
+  btn.textContent = open ? '+ more' : '− less';
+  btn.setAttribute('aria-expanded', !open);
+}
+
+/* Paradata modal */
+function openParadata(){
+  document.getElementById('paraDrawer').classList.add('open');
+  document.body.style.overflow='hidden';
+  document.getElementById('paraBtn').classList.add('open');
+}
+function closeParadata(){
+  document.getElementById('paraDrawer').classList.remove('open');
+  document.body.style.overflow='';
+  document.getElementById('paraBtn').classList.remove('open');
+}
+function closeParadataOutside(e){
+  if(e.target===document.getElementById('paraDrawer'))closeParadata();
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape')closeParadata();
+});
+
+/* Theme */
+function toggleTheme(){
+  const t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',t);
+  localStorage.setItem('theme',t);
+}
+(function(){
+  const saved=localStorage.getItem('theme');
+  if(saved)document.documentElement.setAttribute('data-theme',saved);
+})();
+
+/* Mobile menu */
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open')}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('nav')&&!e.target.closest('#mobileMenu'))closeMenu();
+});
+
+/* Scroll reveal */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+/* Form */
+const form=document.getElementById('inquiryForm');
+const status=document.getElementById('form-status');
+if(form){
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    const btn=form.querySelector('button[type="submit"]');
+    btn.textContent='Sending…';btn.disabled=true;
+    try{
+      const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
+      if(res.ok){
+        status.textContent='✓ Message sent. I\'ll be in touch within 1–2 business days.';
+        status.style.display='block';status.style.color='var(--teal)';
+        form.reset();btn.textContent='Sent ✓';
+      }else{throw new Error()}
+    }catch{
+      status.textContent='Something went wrong. Please email atingad@gmail.com directly.';
+      status.style.display='block';status.style.color='var(--amber)';
+      btn.textContent='Send Inquiry →';btn.disabled=false;
+    }
+  });
+}
+</script>
+</body>
+</html>
