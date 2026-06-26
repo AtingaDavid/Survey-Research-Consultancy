@@ -1,0 +1,51 @@
+# Netlify configuration for Atinga Survey Research Consultancy
+# Docs: https://docs.netlify.com/configure-builds/file-based-configuration/
+
+# ── Build settings ────────────────────────────────────────────────────────────
+[build]
+  publish = "."        # Serve from repo root (index.html lives here)
+
+# ── Clean URLs ────────────────────────────────────────────────────────────────
+# Allows linking to pages/services instead of pages/services.html
+[[redirects]]
+  from   = "/pages/:page"
+  to     = "/pages/:page.html"
+  status = 200
+
+# ── Cache rules ───────────────────────────────────────────────────────────────
+# HTML — no cache (always fresh on redeploy)
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Images — cache for 1 year (fingerprint filenames to bust cache when updated)
+[[headers]]
+  for = "/assets/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# CSS & JS — cache for 1 year
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# PDFs & docs — cache for 1 week
+[[headers]]
+  for = "/assets/docs/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# ── Security headers ──────────────────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options        = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
