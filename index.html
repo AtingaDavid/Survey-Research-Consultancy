@@ -1851,8 +1851,8 @@ html .u35{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing
               <text x="241" y="143" fill="#e2e8f0" font-size="9" text-anchor="middle">9%</text>
               <text x="299" y="143" fill="#e2e8f0" font-size="9" text-anchor="middle">4%</text>
             </svg>
-            <div style="margin-top:10px;padding-top:10px;border-top:1px solid #1e2d45;font-size:11px;color:#94a3b8;line-height:1.55">
-              <div style="font-weight:600;color:#cbd5e1;margin-bottom:4px">How an interview gets its score</div>
+            <details style="margin-top:10px;padding-top:10px;border-top:1px solid #1e2d45;font-size:11px;color:#94a3b8;line-height:1.55">
+              <summary style="cursor:pointer;font-weight:600;color:#cbd5e1;padding:2px 0;list-style-position:inside;margin-bottom:6px">View: How an interview gets its score</summary>
               <div style="color:#64748b;margin-bottom:6px">Each interview is scored with the weighted formula (see the scorecard below), then counted in the bar that matches its score. Five sample interviews:</div>
               <div style="overflow-x:auto">
                 <table style="border-collapse:collapse;font-size:10.5px;width:100%;min-width:340px">
@@ -1874,7 +1874,7 @@ html .u35{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing
                 </table>
               </div>
               <div style="margin-top:8px;color:#64748b">Bar heights are interview counts: 342 + 489 + 287 + 118 + 48 = 1,284, the full completed sample. The percentage under each bar is count ÷ 1,284. For Low (1-2): 489 ÷ 1,284 = 38%.</div>
-            </div>
+            </details>
           </div>
         </div>
       </div>
@@ -2134,8 +2134,8 @@ html .u35{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing
           <div style="padding:8px 12px;border-top:1px solid #1e2d45;font-size:11px;color:#475569">
             📐 Risk Score = (too_fast×2) + (errors×2) + (edits×0.5) + (no_gps×1) + (rejected×2) + (night_int×0.5) · Range: 0–10
           </div>
-          <div style="padding:12px 12px 14px;border-top:1px solid #1e2d45;font-size:11px;color:#94a3b8;line-height:1.55">
-            <div style="font-weight:600;color:#cbd5e1;margin-bottom:6px">Worked example: one interview from D. Koroma's workload</div>
+          <details style="padding:10px 12px 12px;border-top:1px solid #1e2d45;font-size:11px;color:#94a3b8;line-height:1.55">
+            <summary style="cursor:pointer;font-weight:600;color:#cbd5e1;padding:2px 0;list-style-position:inside;margin-bottom:8px">View worked example: one interview from D. Koroma's workload</summary>
             <div style="color:#64748b;margin-bottom:8px">Each term is a flag: 1 if the interview triggers it, 0 if not, using the thresholds in the Quality Flag Inventory. D. Koroma's row has rejections, errors, heavy edits and night interviews, and GPS is 100%, so no_gps is 0. The table has no too_fast column, so it is set to 0 here.</div>
             <div style="overflow-x:auto">
               <table style="border-collapse:collapse;font-size:11px;min-width:520px">
@@ -2161,7 +2161,7 @@ html .u35{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing
             </div>
             <div style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#cbd5e1">(0×2) + (1×2) + (1×0.5) + (0×1) + (1×2) + (1×0.5) = 0 + 2 + 0.5 + 0 + 2 + 0.5 = 5.0</div>
             <div style="margin-top:6px;color:#64748b">5.0 falls in the High (5-6) bar of the Risk Score Distribution chart, and matches the Risk value of 5 in D. Koroma's row.</div>
-          </div>
+          </details>
         </div>
       </div>
 
