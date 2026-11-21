@@ -178,45 +178,43 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:62px;
   background:radial-gradient(ellipse at 20% 80%,rgba(26,122,110,.12) 0%,transparent 55%),
              radial-gradient(ellipse at 80% 10%,rgba(201,130,26,.08) 0%,transparent 50%)}
 /* Paradata monitor card (hero) */
-.pd-card{position:relative;z-index:1;width:100%;max-width:600px;background:#fff;color:#0E1C2B;
-  border-radius:12px;overflow:hidden;box-shadow:0 24px 72px rgba(0,0,0,.4);
+.pd-card{position:relative;z-index:1;width:100%;max-width:600px;border-radius:12px;overflow:hidden;
+  background:#0B1D35;color:#F2F6FA;border:1px solid rgba(255,255,255,.1);box-shadow:0 24px 72px rgba(0,0,0,.45);
   opacity:0;animation:fadeIn .9s .5s ease forwards;font-family:'DM Sans',sans-serif}
-.pd-head{padding:26px 32px 22px;border-bottom:1px solid #E1E8EF}
+.pd-head{padding:26px 32px 22px;border-bottom:1px solid rgba(255,255,255,.08)}
 .pd-eyebrow{display:block;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;
-  text-transform:uppercase;color:#1A7A6E;font-weight:500;margin-bottom:10px}
+  text-transform:uppercase;color:#2FC4B2;font-weight:500;margin-bottom:10px}
 .pd-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.3rem;line-height:1.25;font-weight:700;
-  color:#0D2B4E;margin:0 0 14px;letter-spacing:-.01em}
+  color:#F2F6FA;margin:0 0 14px;letter-spacing:-.01em}
 .pd-tags{display:flex;flex-wrap:wrap;gap:6px}
 .pd-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.06em;padding:3px 10px;
-  border-radius:999px;background:#E8EDF3;color:#0D2B4E;font-weight:500}
-.pd-tag-demo{background:#FBEFD9;color:#8F5A0C}
-.pd-progress{padding:24px 32px 26px;border-bottom:1px solid #E1E8EF}
-.pd-prog-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
-.pd-prog-label{font-size:.78rem;font-weight:600;color:#4A607A;text-transform:uppercase;letter-spacing:.06em}
-.pd-prog-val{font-family:'Bricolage Grotesque',sans-serif;font-size:1.9rem;font-weight:700;color:#0D2B4E;line-height:1}
-.pd-bar{height:8px;border-radius:999px;background:#E1E8EF;overflow:hidden}
-.pd-bar>span{display:block;height:100%;width:71.3%;border-radius:999px;background:#1A7A6E}
-.pd-prog-cap{font-size:.82rem;color:#4A607A;margin-top:12px;line-height:1.55}.pd-prog-cap strong{color:#0D2B4E}
-.pd-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#E1E8EF;border-bottom:1px solid #E1E8EF}
-.pd-tile{background:#fff;padding:20px 22px 22px;display:flex;flex-direction:column;min-width:0}
-.pd-k{font-size:.7rem;font-weight:600;color:#4A607A;text-transform:uppercase;letter-spacing:.06em;line-height:1.3;min-height:2.6em}
-.pd-v{font-family:'Bricolage Grotesque',sans-serif;font-size:1.75rem;font-weight:700;color:#0D2B4E;line-height:1.1;margin:8px 0 6px}
-.pd-v small{font-size:.85rem;font-weight:600;color:#4A607A}
-.pd-s{font-size:.78rem;color:#4A607A;line-height:1.45;margin-bottom:14px}
-.pd-pill{align-self:flex-start;margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap}
+  border-radius:999px;background:rgba(255,255,255,.08);color:#C9D6E4;font-weight:500}
+.pd-tag-demo{background:rgba(240,180,84,.15);color:#F0B454}
+.pd-progress{display:grid;grid-template-columns:104px 1fr;gap:22px;align-items:center;padding:22px 32px}
+.pd-ring{display:block;width:104px;height:104px}
+.pd-prog-label{display:block;font-size:.76rem;font-weight:600;color:#8FA5BE;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.pd-prog-cap{font-size:.84rem;color:#8FA5BE;line-height:1.55}.pd-prog-cap strong{display:block;font-size:1rem;color:#F2F6FA;margin-bottom:4px}
+.pd-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:0 24px 4px}
+.pd-tile{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-left:3px solid var(--sc);
+  border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;min-width:0}
+.pd-k{font-size:.7rem;font-weight:600;color:#8FA5BE;text-transform:uppercase;letter-spacing:.06em;line-height:1.3;min-height:2.6em}
+.pd-v{font-family:'Bricolage Grotesque',sans-serif;font-size:1.75rem;font-weight:700;color:#F2F6FA;line-height:1.1;margin:8px 0 6px;font-feature-settings:'tnum'}
+.pd-v small{font-size:.85rem;font-weight:600;color:#8FA5BE}
+.pd-s{font-size:.78rem;color:#8FA5BE;line-height:1.45;margin-bottom:14px}
+.pd-pill{align-self:flex-start;margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap;background:var(--pbg);color:var(--sc)}
 .pd-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
-.pd-ok{background:#DDF2EE;color:#11594F}
-.pd-review{background:#FBEFD9;color:#8F5A0C}
-.pd-action{background:#FBE3E0;color:#9B2A1E}
-.pd-cta-wrap{padding:22px 32px 10px}
+.pd-ok{--sc:#5FE0CF;--pbg:rgba(47,196,178,.15)}
+.pd-review{--sc:#F0B454;--pbg:rgba(240,180,84,.15)}
+.pd-action{--sc:#FF8F84;--pbg:rgba(255,120,105,.16)}
+.pd-cta-wrap{padding:22px 24px 8px}
 .pd-cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;box-sizing:border-box;
-  background:#0D2B4E;color:#fff;text-decoration:none;font-weight:600;font-size:.92rem;
+  background:#2FC4B2;color:#062B2A;text-decoration:none;font-weight:600;font-size:.92rem;
   padding:13px 18px;border-radius:8px;transition:background .2s}
-.pd-cta:hover{background:#1A7A6E}
-.pd-cta:focus-visible{outline:3px solid #C9821A;outline-offset:3px}
+.pd-cta:hover{background:#5FE0CF}
+.pd-cta:focus-visible{outline:3px solid #F0B454;outline-offset:3px}
 .pd-cta .pd-arrow{transition:transform .2s;font-size:1.1rem;line-height:1}
 .pd-cta:hover .pd-arrow{transform:translateX(4px)}
-.pd-foot{padding:6px 32px 22px;font-size:.74rem;color:#4A607A;text-align:center}
+.pd-foot{padding:8px 32px 22px;font-size:.74rem;color:#8FA5BE;text-align:center}
 @media(prefers-reduced-motion:reduce){.pd-card{animation:none;opacity:1}.pd-cta,.pd-cta .pd-arrow{transition:none}}
 
 /* Stat pills below terminal */
@@ -465,7 +463,8 @@ footer{background:#060E1A}
   .hero-right{padding:32px 16px}
   .pd-card{max-width:100%}
   .pd-head,.pd-progress,.pd-cta-wrap,.pd-foot{padding-left:20px;padding-right:20px}
-  .pd-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pd-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding:0 16px 4px}
+  .pd-progress{grid-template-columns:84px 1fr;gap:16px}.pd-ring{width:84px;height:84px}
   .pd-tile{padding:16px 18px 18px}
   .pd-v{font-size:1.5rem}
   #why-reach{padding:40px 24px}
@@ -604,46 +603,45 @@ html .u35{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing
       </div>
 
       <div class="pd-progress">
-        <div class="pd-prog-row">
+        <svg class="pd-ring" viewBox="0 0 104 104" role="img" aria-label="1,284 of 1,800 interviews completed, 71.3 percent"><circle cx="52" cy="52" r="44" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="9"/><circle cx="52" cy="52" r="44" fill="none" stroke="#2FC4B2" stroke-width="9" stroke-linecap="round" stroke-dasharray="197.1 276.5" transform="rotate(-90 52 52)"/><text x="52" y="57" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="700" font-size="17" fill="#F2F6FA">71.3%</text></svg>
+        <div>
           <span class="pd-prog-label">Fieldwork completed</span>
-          <span class="pd-prog-val">71.3%</span>
+          <div class="pd-prog-cap"><strong>1,284 of 1,800 interviews</strong>Pace 38.6 a day against 43 needed. Projected finish about 6 Jun, target 4 Jun.</div>
         </div>
-        <div class="pd-bar" role="img" aria-label="1,284 of 1,800 interviews completed, 71.3 percent"><span></span></div>
-        <div class="pd-prog-cap"><strong>1,284 of 1,800 interviews</strong><br/>Pace 38.6 a day against 43 needed. Projected finish about 6 Jun, target 4 Jun.</div>
       </div>
 
       <div class="pd-grid">
-        <div class="pd-tile">
+        <div class="pd-tile pd-ok">
           <span class="pd-k">HQ rejection rate</span>
           <span class="pd-v">3.7%</span>
           <span class="pd-s">47 interviews · limit 5%</span>
           <span class="pd-pill pd-ok">Within limit</span>
         </div>
-        <div class="pd-tile">
+        <div class="pd-tile pd-review">
           <span class="pd-k">GPS captured</span>
           <span class="pd-v">93.5%</span>
           <span class="pd-s">83 interviews missing</span>
           <span class="pd-pill pd-review">Review</span>
         </div>
-        <div class="pd-tile">
+        <div class="pd-tile pd-review">
           <span class="pd-k">High-error interviews</span>
           <span class="pd-v">6.9%</span>
           <span class="pd-s">89 interviews over 5 invalid answers</span>
           <span class="pd-pill pd-review">Review</span>
         </div>
-        <div class="pd-tile">
+        <div class="pd-tile pd-review">
           <span class="pd-k">Flagged night starts</span>
           <span class="pd-v">14</span>
           <span class="pd-s">Of 108 starts, 20:00–05:00</span>
           <span class="pd-pill pd-review">Review</span>
         </div>
-        <div class="pd-tile">
+        <div class="pd-tile pd-review">
           <span class="pd-k">Average duration</span>
           <span class="pd-v">28.4 <small>min</small></span>
           <span class="pd-s">Median 25.9 min</span>
           <span class="pd-pill pd-review">Review</span>
         </div>
-        <div class="pd-tile">
+        <div class="pd-tile pd-action">
           <span class="pd-k">Interviewers</span>
           <span class="pd-v">15 <small>active</small></span>
           <span class="pd-s">2 rated high risk</span>
