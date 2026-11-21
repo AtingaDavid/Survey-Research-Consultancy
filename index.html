@@ -131,25 +131,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:62px;
 .mobile-menu.open{display:flex}
 
 /* ── HERO ────────────────────────────────────────────────────────── */
-#hero{min-height:100vh;display:grid;grid-template-columns:52fr 48fr;
-  padding-top:62px;overflow:hidden;position:relative}
-.hero-left{display:flex;flex-direction:column;justify-content:center;
-  padding:80px 64px 80px 52px;position:relative;z-index:2}
+#hero{min-height:100vh;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  padding:62px 0 0;overflow:hidden;position:relative;background:var(--bg)}
+.hero-left{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+  padding:64px 56px 64px max(32px,calc((100vw - 1160px)/2 + 32px));position:relative;z-index:2}
+.hero-left>*{max-width:600px}
 .hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.16em;
   text-transform:uppercase;color:var(--amber-ink);margin-bottom:18px;
   display:flex;align-items:center;gap:10px;
   opacity:0;animation:fadeUp .6s .1s ease forwards}
 .hero-eyebrow::before{content:'';width:32px;height:2px;background:var(--amber);flex-shrink:0}
 .hero-headline{font-family:'Bricolage Grotesque',sans-serif;
-  font-size:clamp(2.6rem,4.2vw,4rem);line-height:1.06;color:var(--navy);
-  margin-bottom:14px;
+  font-size:clamp(2.1rem,3.5vw,3.25rem);line-height:1.1;letter-spacing:-.015em;color:var(--navy);
+  margin-bottom:0;text-wrap:balance;
   opacity:0;animation:fadeUp .7s .22s ease forwards}
 .hero-headline em{font-style:italic;color:var(--teal)}
-.hero-rule{width:44px;height:3px;background:var(--amber);border-radius:2px;margin:14px 0 20px;
+.hero-rule{width:44px;height:3px;background:var(--amber);border-radius:2px;margin:24px 0 24px;
   opacity:0;animation:fadeUp .6s .3s ease forwards}
-.hero-sub{font-size:.97rem;color:var(--muted);line-height:1.75;max-width:480px;margin-bottom:36px;
+.hero-sub{font-size:.97rem;color:var(--muted);line-height:1.75;max-width:540px;margin-bottom:28px;
   opacity:0;animation:fadeUp .7s .38s ease forwards}
-.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px;
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px;
   opacity:0;animation:fadeUp .7s .48s ease forwards}
 .htag{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.06em;
   padding:4px 12px;border-radius:100px;border:1px solid var(--rule);
@@ -171,54 +172,51 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:62px;
 
 /* Hero right, navy panel */
 .hero-right{background:var(--dark-panel);display:flex;flex-direction:column;
-  justify-content:center;padding:64px 52px;position:relative;overflow:hidden;
+  align-items:center;justify-content:center;padding:40px 40px;position:relative;overflow:hidden;
   transition:background .35s}
 .hero-right::before{content:'';position:absolute;inset:0;
   background:radial-gradient(ellipse at 20% 80%,rgba(26,122,110,.12) 0%,transparent 55%),
              radial-gradient(ellipse at 80% 10%,rgba(201,130,26,.08) 0%,transparent 50%)}
 /* Paradata monitor card (hero) */
-.pd-card{position:relative;z-index:1;width:100%;max-width:460px;background:#fff;color:#0E1C2B;
-  border-radius:14px;overflow:hidden;box-shadow:0 24px 72px rgba(0,0,0,.45);
+.pd-card{position:relative;z-index:1;width:100%;max-width:600px;background:#fff;color:#0E1C2B;
+  border-radius:12px;overflow:hidden;box-shadow:0 24px 72px rgba(0,0,0,.4);
   opacity:0;animation:fadeIn .9s .5s ease forwards;font-family:'DM Sans',sans-serif}
-.pd-head{padding:22px 24px 18px;background:linear-gradient(180deg,#F3F6F9 0%,#fff 100%);border-bottom:1px solid #E1E8EF}
+.pd-head{padding:26px 32px 22px;border-bottom:1px solid #E1E8EF}
 .pd-eyebrow{display:block;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;
-  text-transform:uppercase;color:#1A7A6E;font-weight:500;margin-bottom:8px}
-.pd-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.2rem;line-height:1.25;font-weight:700;
-  color:#0D2B4E;margin:0 0 12px;letter-spacing:-.01em}
+  text-transform:uppercase;color:#1A7A6E;font-weight:500;margin-bottom:10px}
+.pd-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.3rem;line-height:1.25;font-weight:700;
+  color:#0D2B4E;margin:0 0 14px;letter-spacing:-.01em}
 .pd-tags{display:flex;flex-wrap:wrap;gap:6px}
-.pd-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.06em;padding:3px 9px;
+.pd-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.06em;padding:3px 10px;
   border-radius:999px;background:#E8EDF3;color:#0D2B4E;font-weight:500}
 .pd-tag-demo{background:#FBEFD9;color:#8F5A0C}
-.pd-progress{padding:18px 24px 6px}
-.pd-prog-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.pd-progress{padding:24px 32px 26px;border-bottom:1px solid #E1E8EF}
+.pd-prog-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
 .pd-prog-label{font-size:.78rem;font-weight:600;color:#4A607A;text-transform:uppercase;letter-spacing:.06em}
-.pd-prog-val{font-family:'Bricolage Grotesque',sans-serif;font-size:1.6rem;font-weight:700;color:#0D2B4E;line-height:1}
-.pd-bar{height:10px;border-radius:999px;background:#E1E8EF;overflow:hidden}
-.pd-bar>span{display:block;height:100%;width:71.3%;border-radius:999px;background:linear-gradient(90deg,#1A7A6E,#22988A)}
-.pd-prog-cap{font-size:.8rem;color:#4A607A;margin-top:8px;line-height:1.5}.pd-prog-cap strong{color:#0D2B4E}
-.pd-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 24px 6px}
-.pd-tile{border:1px solid #E1E8EF;border-radius:10px;padding:12px 14px;background:#FAFBFD;display:flex;flex-direction:column;min-width:0}
-.pd-k{font-size:.7rem;font-weight:600;color:#4A607A;text-transform:uppercase;letter-spacing:.06em}
-.pd-v{font-family:'Bricolage Grotesque',sans-serif;font-size:1.45rem;font-weight:700;color:#0D2B4E;line-height:1.15;margin:4px 0 2px}
-.pd-v small{font-size:.8rem;font-weight:600;color:#4A607A}
-.pd-s{font-size:.74rem;color:#4A607A;line-height:1.4}
-.pd-pill{align-self:flex-start;margin-top:8px;font-size:.68rem;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.pd-prog-val{font-family:'Bricolage Grotesque',sans-serif;font-size:1.9rem;font-weight:700;color:#0D2B4E;line-height:1}
+.pd-bar{height:8px;border-radius:999px;background:#E1E8EF;overflow:hidden}
+.pd-bar>span{display:block;height:100%;width:71.3%;border-radius:999px;background:#1A7A6E}
+.pd-prog-cap{font-size:.82rem;color:#4A607A;margin-top:12px;line-height:1.55}.pd-prog-cap strong{color:#0D2B4E}
+.pd-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#E1E8EF;border-bottom:1px solid #E1E8EF}
+.pd-tile{background:#fff;padding:20px 22px 22px;display:flex;flex-direction:column;min-width:0}
+.pd-k{font-size:.7rem;font-weight:600;color:#4A607A;text-transform:uppercase;letter-spacing:.06em;line-height:1.3;min-height:2.6em}
+.pd-v{font-family:'Bricolage Grotesque',sans-serif;font-size:1.75rem;font-weight:700;color:#0D2B4E;line-height:1.1;margin:8px 0 6px}
+.pd-v small{font-size:.85rem;font-weight:600;color:#4A607A}
+.pd-s{font-size:.78rem;color:#4A607A;line-height:1.45;margin-bottom:14px}
+.pd-pill{align-self:flex-start;margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.pd-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
 .pd-ok{background:#DDF2EE;color:#11594F}
 .pd-review{background:#FBEFD9;color:#8F5A0C}
 .pd-action{background:#FBE3E0;color:#9B2A1E}
-.pd-gauge{position:relative;height:6px;border-radius:999px;background:#E1E8EF;margin:8px 0 2px}
-.pd-gauge>span{position:absolute;left:0;top:0;bottom:0;width:37%;border-radius:999px;background:#1A7A6E}
-.pd-gauge>i{position:absolute;left:50%;top:-3px;bottom:-3px;width:2px;background:#0D2B4E}
-.pd-cta-wrap{padding:16px 24px 8px}
+.pd-cta-wrap{padding:22px 32px 10px}
 .pd-cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;box-sizing:border-box;
-  background:#1A7A6E;color:#fff;text-decoration:none;font-weight:600;font-size:.95rem;
-  padding:14px 18px;border-radius:10px;transition:background .2s,transform .2s;
-  box-shadow:0 6px 18px rgba(26,122,110,.35)}
-.pd-cta:hover{background:#0D2B4E;transform:translateY(-1px)}
+  background:#0D2B4E;color:#fff;text-decoration:none;font-weight:600;font-size:.92rem;
+  padding:13px 18px;border-radius:8px;transition:background .2s}
+.pd-cta:hover{background:#1A7A6E}
 .pd-cta:focus-visible{outline:3px solid #C9821A;outline-offset:3px}
 .pd-cta .pd-arrow{transition:transform .2s;font-size:1.1rem;line-height:1}
 .pd-cta:hover .pd-arrow{transform:translateX(4px)}
-.pd-foot{padding:6px 24px 18px;font-size:.72rem;color:#4A607A;text-align:center}
+.pd-foot{padding:6px 32px 22px;font-size:.74rem;color:#4A607A;text-align:center}
 @media(prefers-reduced-motion:reduce){.pd-card{animation:none;opacity:1}.pd-cta,.pd-cta .pd-arrow{transition:none}}
 
 /* Stat pills below terminal */
@@ -282,6 +280,11 @@ section{padding:96px 32px}
 .why-feat-title{font-family:'Bricolage Grotesque',sans-serif;font-size:.95rem;
   color:var(--navy);margin-bottom:5px;font-weight:600}
 .why-feat-desc{font-size:.83rem;color:var(--muted);line-height:1.7}
+.rm-hidden{display:none}
+.rm-toggle{display:inline;margin:0 0 0 4px;padding:0;background:none;border:none;cursor:pointer;
+  font:inherit;font-size:.8rem;font-weight:600;color:var(--teal);white-space:nowrap;
+  text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.rm-toggle:hover{color:var(--navy)}
 
 .why-panel{background:var(--dark-panel);border-radius:10px;padding:40px 36px;
   position:relative;overflow:hidden}
@@ -435,12 +438,14 @@ footer{background:#060E1A}
 
 /* ── PARADATA EXPANDED PANEL ────────────────────────────────────── */
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
 /* ── RESPONSIVE ─────────────────────────────────────────────────── */
 @media(max-width:1024px){
   #hero{grid-template-columns:1fr;min-height:auto}
-  .hero-right{padding:48px 32px;align-items:center}
-  .hero-left{padding:60px 32px 40px}
+  .hero-right{padding:48px 32px}
+  .hero-left{padding:56px 32px 48px}
+  .hero-left>*{max-width:680px}
   .services-grid{grid-template-columns:1fr 1fr}
   .why-grid{grid-template-columns:1fr}
   .q-grid{grid-template-columns:1fr 1fr}
@@ -456,11 +461,13 @@ footer{background:#060E1A}
   .services-grid{grid-template-columns:1fr}
   .q-grid{grid-template-columns:1fr}
   section{padding:72px 24px}
-  .hero-left{padding:48px 24px 32px}
-  .hero-right{padding:36px 20px}
+  .hero-left{padding:44px 24px 40px}
+  .hero-right{padding:32px 16px}
   .pd-card{max-width:100%}
-  .pd-head,.pd-progress,.pd-grid,.pd-cta-wrap,.pd-foot{padding-left:18px;padding-right:18px}
-  .pd-v{font-size:1.25rem}
+  .pd-head,.pd-progress,.pd-cta-wrap,.pd-foot{padding-left:20px;padding-right:20px}
+  .pd-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pd-tile{padding:16px 18px 18px}
+  .pd-v{font-size:1.5rem}
   #why-reach{padding:40px 24px}
 }
 
@@ -567,7 +574,7 @@ html .u35{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing
 <section id="hero">
   <div class="hero-left">
     <div class="hero-eyebrow">PhD Applied Economist · Survey Research Consultant</div>
-    <h1 class="hero-headline">Design &amp; Implement<br/><em>Survey Research</em><br/>that Works in the Field</h1>
+    <h1 class="hero-headline">Design &amp; Implement <em>Survey Research</em> that Works in the Field</h1>
     <div class="hero-rule"></div>
     <p class="hero-sub">End-to-end survey implementation using the <strong>World Bank Survey Solutions</strong> platform, from questionnaire design and server deployment to data collection, quality monitoring, and analysis.</p>
     <div class="hero-tags">
@@ -609,39 +616,38 @@ html .u35{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing
         <div class="pd-tile">
           <span class="pd-k">HQ rejection rate</span>
           <span class="pd-v">3.7%</span>
-          <div class="pd-gauge" role="img" aria-label="3.7 percent against a 5 percent threshold"><span></span><i></i></div>
-          <span class="pd-s">47 interviews · threshold 5%</span>
-          <span class="pd-pill pd-ok">✓ Within limit</span>
+          <span class="pd-s">47 interviews · limit 5%</span>
+          <span class="pd-pill pd-ok">Within limit</span>
         </div>
         <div class="pd-tile">
           <span class="pd-k">GPS captured</span>
           <span class="pd-v">93.5%</span>
-          <span class="pd-s">1,201 of 1,284 interviews · 83 missing</span>
-          <span class="pd-pill pd-review">● Review</span>
+          <span class="pd-s">83 interviews missing</span>
+          <span class="pd-pill pd-review">Review</span>
         </div>
         <div class="pd-tile">
           <span class="pd-k">High-error interviews</span>
           <span class="pd-v">6.9%</span>
-          <span class="pd-s">89 interviews with more than 5 invalid answers · mean 2.3 per interview</span>
-          <span class="pd-pill pd-review">● Review</span>
+          <span class="pd-s">89 interviews over 5 invalid answers</span>
+          <span class="pd-pill pd-review">Review</span>
         </div>
         <div class="pd-tile">
           <span class="pd-k">Flagged night starts</span>
           <span class="pd-v">14</span>
-          <span class="pd-s">Of 108 starts between 20:00 and 05:00 (8.4%)</span>
-          <span class="pd-pill pd-review">● Review</span>
+          <span class="pd-s">Of 108 starts, 20:00–05:00</span>
+          <span class="pd-pill pd-review">Review</span>
         </div>
         <div class="pd-tile">
           <span class="pd-k">Average duration</span>
           <span class="pd-v">28.4 <small>min</small></span>
-          <span class="pd-s">Median 25.9 · 39.5% outside the 20–35 min range</span>
-          <span class="pd-pill pd-review">● Review</span>
+          <span class="pd-s">Median 25.9 min</span>
+          <span class="pd-pill pd-review">Review</span>
         </div>
         <div class="pd-tile">
           <span class="pd-k">Interviewers</span>
           <span class="pd-v">15 <small>active</small></span>
-          <span class="pd-s">2 of 15 rated high risk (INT-04, INT-07)</span>
-          <span class="pd-pill pd-action">▲ Action</span>
+          <span class="pd-s">2 rated high risk</span>
+          <span class="pd-pill pd-action">Action</span>
         </div>
       </div>
 
@@ -652,27 +658,6 @@ html .u35{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing
       </div>
       <div class="pd-foot">Round 1 snapshot, 23 May 2026 · Simulated data</div>
     </div>
-    <div class="hero-stats-row" style="flex-direction:column;gap:10px">
-      <div class="hstat hstat-wide">
-        <div style="margin-bottom:10px;font-family:'Bricolage Grotesque',sans-serif;font-size:.95rem;font-weight:600;color:#fff;letter-spacing:.01em">Collection Modes <span style="color:var(--teal);font-style:italic">· Offline &amp; Online</span></div>
-        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-          <span class="hstat-badge capi-b">CAPI</span>
-          <span class="hstat-badge cawi-b">CAWI</span>
-          <span class="hstat-badge cati-b">CATI</span>
-          <span class="hstat-badge gps-b">GPS</span>
-        </div>
-        <div style="font-size:.72rem;color:rgba(255,255,255,.32);margin-top:8px;font-family:'JetBrains Mono',monospace;letter-spacing:.06em">Android · Browser · Phone · Field</div>
-      </div>
-      <div style="display:flex;gap:10px;width:100%">
-        <div class="hstat" style="flex:1">
-          <div class="hstat-n" style="font-size:1.15rem">GEE</div>
-          <div class="hstat-l">Env. Data</div>
-        </div>
-        <div class="hstat" style="flex:1">
-          <div class="hstat-n" style="font-size:1.15rem">Free</div>
-          <div class="hstat-l">WB Platform</div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -828,15 +813,7 @@ html .u35{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing
           <div class="why-feat-icon">🌐</div>
           <div>
             <div class="why-feat-title">CAWI: Self-Administered Online Interviews</div>
-            <div class="why-feat-desc">Web-mode (CAWI) lets respondents complete questionnaires on any device via a secure URL, suited to Key Informant Interviews, expert surveys, and remote data collection. Auto email<span class="rm-hidden" id="rm-cawi"> reminders keep response rates high without manual follow-up, and respondents can <strong>resume a partially completed interview</strong> at any time, even generating their own resume-link to pick up on a different device, no extra server setup required.</span> <button class="rm-toggle" onclick="toggleRM('rm-cawi',this)" aria-expanded="false">+ more</button></div>
-          </div>
-        </div>
-
-        <div class="why-feat reveal">
-          <div class="why-feat-icon">📡</div>
-          <div>
-            <div class="why-feat-title">GPS, GIS &amp; Offline Mapping</div>
-            <div class="why-feat-desc">Capture precise GPS coordinates, land areas, and boundaries using the built-in geography question type. Interviewers can find sampling points offline using high-resolution<span class="rm-hidden" id="rm-gps"> satellite imagery, and apply geofencing to enforce interview location compliance, even with no mobile signal.</span> <button class="rm-toggle" onclick="toggleRM('rm-gps',this)" aria-expanded="false">+ more</button></div>
+            <div class="why-feat-desc">Web-mode (CAWI) lets respondents complete questionnaires on any device via a secure URL, suited to Key Informant Interviews, expert surveys, and remote data collection. Auto email reminders keep response rates high without manual follow-up.<span class="rm-hidden" id="rm-cawi"> Respondents can <strong>resume a partially completed interview</strong> at any time, even generating their own resume-link to pick up on a different device, no extra server setup required.</span> <button class="rm-toggle" onclick="toggleRM('rm-cawi',this)" aria-expanded="false">+ more</button></div>
           </div>
         </div>
 
@@ -844,7 +821,7 @@ html .u35{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing
           <div class="why-feat-icon">✅</div>
           <div>
             <div class="why-feat-title">Validation and Skip Logic</div>
-            <div class="why-feat-desc">Write validation rules and skip logic using .NET expressions, macros, and lookup tables. Errors are flagged during the interview, which cuts<span class="rm-hidden" id="rm-valid"> back-office data cleaning. Supervisor rejection and commenting workflows enforce multi-level quality control.</span> <button class="rm-toggle" onclick="toggleRM('rm-valid',this)" aria-expanded="false">+ more</button></div>
+            <div class="why-feat-desc">Write validation rules and skip logic using .NET expressions, macros, and lookup tables. Errors are flagged during the interview, which cuts back-office data cleaning.<span class="rm-hidden" id="rm-valid"> Supervisor rejection and commenting workflows enforce multi-level quality control.</span> <button class="rm-toggle" onclick="toggleRM('rm-valid',this)" aria-expanded="false">+ more</button></div>
           </div>
         </div>
 
@@ -852,15 +829,7 @@ html .u35{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing
           <div class="why-feat-icon">🔒</div>
           <div>
             <div class="why-feat-title">No Software Cost, World Bank Backing, Any Scale</div>
-            <div class="why-feat-desc">Developed and maintained by the World Bank, free at any scale, with no licensing fee, no subscription tier, and no feature gates. It scales from small KII studies to national census operations, with user<span class="rm-hidden" id="rm-secure"> role management (HQ admin → Supervisor → Interviewer) and full REST API access for system integration. Commercial alternatives like SurveyCTO or CommCare typically start at USD 250–1,000+ per month for equivalent functionality, Survey Solutions carries zero software cost at any scale.</span> <button class="rm-toggle" onclick="toggleRM('rm-secure',this)" aria-expanded="false">+ more</button></div>
-          </div>
-        </div>
-
-        <div class="why-feat reveal">
-          <div class="why-feat-icon">📤</div>
-          <div>
-            <div class="why-feat-title">Export-Ready for Any Analysis Software</div>
-            <div class="why-feat-desc">Export clean, labelled datasets directly in STATA (.dta), SPSS (.sav), CSV, or tab-delimited formats, with all question labels, value labels, and metadata intact. Export paradata alongside responses for interview process analysis.</div>
+            <div class="why-feat-desc">Developed and maintained by the World Bank, free at any scale, with no licensing fee, no subscription tier, and no feature gates. It scales from small KII studies to national census operations, with user role management (HQ admin → Supervisor → Interviewer) and full REST API access for system integration.<span class="rm-hidden" id="rm-secure"> Commercial alternatives like SurveyCTO or CommCare typically start at USD 250–1,000+ per month for equivalent functionality, Survey Solutions carries zero software cost at any scale.</span> <button class="rm-toggle" onclick="toggleRM('rm-secure',this)" aria-expanded="false">+ more</button></div>
           </div>
         </div>
 
