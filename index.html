@@ -176,26 +176,50 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:62px;
 .hero-right::before{content:'';position:absolute;inset:0;
   background:radial-gradient(ellipse at 20% 80%,rgba(26,122,110,.12) 0%,transparent 55%),
              radial-gradient(ellipse at 80% 10%,rgba(201,130,26,.08) 0%,transparent 50%)}
-/* Data grid, the signature element: a live paradata-style terminal */
-.terminal-wrap{position:relative;z-index:1;width:100%;max-width:440px;
-  border:1px solid rgba(255,255,255,.1);border-radius:10px;overflow:hidden;
-  box-shadow:0 24px 72px rgba(0,0,0,.5);
-  opacity:0;animation:fadeIn .9s .5s ease forwards}
-.terminal-bar{background:rgba(255,255,255,.06);padding:11px 16px;
-  display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.08)}
-.t-dot{width:10px;height:10px;border-radius:50%}
-.t-dot.r{background:#FF5F56}.t-dot.y{background:#FFBD2E}.t-dot.g{background:#27C93F}
-.terminal-title{font-family:'JetBrains Mono',monospace;font-size:.72rem;
-  letter-spacing:.1em;color:rgba(255,255,255,.3);text-transform:uppercase;margin-left:8px}
-.terminal-body{padding:20px 20px 24px;background:rgba(0,0,0,.35)}
-.t-line{font-family:'JetBrains Mono',monospace;font-size:.72rem;line-height:2.1;
-  color:rgba(255,255,255,.55);display:flex;align-items:baseline;gap:10px}
-.t-line .t-key{color:var(--teal);flex-shrink:0;min-width:120px}
-.t-line .t-val{color:rgba(255,255,255,.85)}
-.t-line .t-badge{display:inline-block;padding:1px 8px;border-radius:3px;font-size:.72rem;
-  letter-spacing:.06em;background:rgba(26,122,110,.3);color:var(--teal);border:1px solid rgba(26,122,110,.4)}
-.t-line .t-badge.amber{background:rgba(201,130,26,.25);color:var(--amber);border-color:rgba(201,130,26,.35)}
-.t-divider{border:none;border-top:1px solid rgba(255,255,255,.07);margin:10px 0}
+/* Paradata monitor card (hero) */
+.pd-card{position:relative;z-index:1;width:100%;max-width:460px;background:#fff;color:#0E1C2B;
+  border-radius:14px;overflow:hidden;box-shadow:0 24px 72px rgba(0,0,0,.45);
+  opacity:0;animation:fadeIn .9s .5s ease forwards;font-family:'DM Sans',sans-serif}
+.pd-head{padding:22px 24px 18px;background:linear-gradient(180deg,#F3F6F9 0%,#fff 100%);border-bottom:1px solid #E1E8EF}
+.pd-eyebrow{display:block;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;
+  text-transform:uppercase;color:#1A7A6E;font-weight:500;margin-bottom:8px}
+.pd-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.2rem;line-height:1.25;font-weight:700;
+  color:#0D2B4E;margin:0 0 12px;letter-spacing:-.01em}
+.pd-tags{display:flex;flex-wrap:wrap;gap:6px}
+.pd-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.06em;padding:3px 9px;
+  border-radius:999px;background:#E8EDF3;color:#0D2B4E;font-weight:500}
+.pd-tag-demo{background:#FBEFD9;color:#8F5A0C}
+.pd-progress{padding:18px 24px 6px}
+.pd-prog-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.pd-prog-label{font-size:.78rem;font-weight:600;color:#4A607A;text-transform:uppercase;letter-spacing:.06em}
+.pd-prog-val{font-family:'Bricolage Grotesque',sans-serif;font-size:1.6rem;font-weight:700;color:#0D2B4E;line-height:1}
+.pd-bar{height:10px;border-radius:999px;background:#E1E8EF;overflow:hidden}
+.pd-bar>span{display:block;height:100%;width:71.3%;border-radius:999px;background:linear-gradient(90deg,#1A7A6E,#22988A)}
+.pd-prog-cap{font-size:.8rem;color:#4A607A;margin-top:8px;line-height:1.5}.pd-prog-cap strong{color:#0D2B4E}
+.pd-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 24px 6px}
+.pd-tile{border:1px solid #E1E8EF;border-radius:10px;padding:12px 14px;background:#FAFBFD;display:flex;flex-direction:column;min-width:0}
+.pd-k{font-size:.7rem;font-weight:600;color:#4A607A;text-transform:uppercase;letter-spacing:.06em}
+.pd-v{font-family:'Bricolage Grotesque',sans-serif;font-size:1.45rem;font-weight:700;color:#0D2B4E;line-height:1.15;margin:4px 0 2px}
+.pd-v small{font-size:.8rem;font-weight:600;color:#4A607A}
+.pd-s{font-size:.74rem;color:#4A607A;line-height:1.4}
+.pd-pill{align-self:flex-start;margin-top:8px;font-size:.68rem;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.pd-ok{background:#DDF2EE;color:#11594F}
+.pd-review{background:#FBEFD9;color:#8F5A0C}
+.pd-action{background:#FBE3E0;color:#9B2A1E}
+.pd-gauge{position:relative;height:6px;border-radius:999px;background:#E1E8EF;margin:8px 0 2px}
+.pd-gauge>span{position:absolute;left:0;top:0;bottom:0;width:37%;border-radius:999px;background:#1A7A6E}
+.pd-gauge>i{position:absolute;left:50%;top:-3px;bottom:-3px;width:2px;background:#0D2B4E}
+.pd-cta-wrap{padding:16px 24px 8px}
+.pd-cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;box-sizing:border-box;
+  background:#1A7A6E;color:#fff;text-decoration:none;font-weight:600;font-size:.95rem;
+  padding:14px 18px;border-radius:10px;transition:background .2s,transform .2s;
+  box-shadow:0 6px 18px rgba(26,122,110,.35)}
+.pd-cta:hover{background:#0D2B4E;transform:translateY(-1px)}
+.pd-cta:focus-visible{outline:3px solid #C9821A;outline-offset:3px}
+.pd-cta .pd-arrow{transition:transform .2s;font-size:1.1rem;line-height:1}
+.pd-cta:hover .pd-arrow{transform:translateX(4px)}
+.pd-foot{padding:6px 24px 18px;font-size:.72rem;color:#4A607A;text-align:center}
+@media(prefers-reduced-motion:reduce){.pd-card{animation:none;opacity:1}.pd-cta,.pd-cta .pd-arrow{transition:none}}
 
 /* Stat pills below terminal */
 .hero-stats-row{position:relative;z-index:1;display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;
@@ -410,138 +434,6 @@ footer{background:#060E1A}
 .footer-copy{font-size:.73rem;color:rgba(255,255,255,.25);font-family:'JetBrains Mono',monospace}
 
 /* ── PARADATA EXPANDED PANEL ────────────────────────────────────── */
-.para-expand-btn{
-  display:flex;align-items:center;gap:8px;margin-top:14px;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
-  border-radius:5px;padding:9px 14px;cursor:pointer;width:100%;
-  font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;
-  text-transform:uppercase;color:rgba(255,255,255,.5);transition:background .2s,color .2s;
-  position:relative;z-index:1}
-.para-expand-btn:hover{background:rgba(255,255,255,.1);color:rgba(255,255,255,.85)}
-.para-expand-btn .btn-arrow{margin-left:auto}
-a.para-expand-btn{text-decoration:none}
-.para-expand-btn.open .btn-arrow{transform:rotate(180deg)}
-
-.para-drawer{
-  display:none;position:fixed;inset:0;z-index:200;
-  background:rgba(5,10,20,.88);backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  justify-content:center;align-items:center;padding:24px}
-.para-drawer.open{display:flex}
-.para-drawer-inner{
-  background:#0A1525;border:1px solid rgba(255,255,255,.1);border-radius:12px;
-  width:100%;max-width:860px;max-height:90vh;overflow-y:auto;
-  box-shadow:0 32px 96px rgba(0,0,0,.7)}
-.para-drawer-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:18px 24px;border-bottom:1px solid rgba(255,255,255,.08);
-  position:sticky;top:0;background:#0A1525;z-index:2;border-radius:12px 12px 0 0}
-.para-drawer-title{font-family:'JetBrains Mono',monospace;font-size:.92rem;font-weight:600;
-  letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
-.para-drawer-subtitle{font-size:.85rem;color:rgba(255,255,255,.6);margin-top:5px}
-.pdh{background:#0c1729;border:1px solid #1e2d45;border-top:3px solid #3b82f6;border-radius:8px;padding:22px 24px;margin-bottom:24px}
-.pdh-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid #1e2d45}
-.pdh-eyebrow{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#60a5fa}
-.pdh-tag{font-size:14px;color:#94a3b8;margin-top:6px;line-height:1.4}
-.pdh-meta{display:flex;gap:28px;flex-wrap:wrap}
-.pdh-meta span{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#64748b;margin-bottom:4px}
-.pdh-meta b{font-family:'JetBrains Mono',monospace;font-size:13.5px;font-weight:600;color:#e2e8f0}
-.pdh-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:20px}
-.pdh-kpi{border-left:2px solid #1e2d45;padding-left:14px}
-.pdh-kpi .l{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#64748b}
-.pdh-kpi .v{font-size:26px;font-weight:600;color:#f1f5f9;margin:5px 0 3px;line-height:1.1;font-variant-numeric:tabular-nums}
-.pdh-kpi .s{font-size:12px;color:#94a3b8;line-height:1.35}
-.pdh-bar{height:4px;background:#1e2d45;border-radius:2px;margin-top:9px;overflow:hidden}
-.pdh-bar i{display:block;height:100%;width:71.3%;background:#3b82f6}
-.para-close{background:none;border:1px solid rgba(255,255,255,.15);border-radius:4px;
-  color:rgba(255,255,255,.5);cursor:pointer;font-size:.8rem;padding:5px 12px;
-  font-family:'JetBrains Mono',monospace;transition:all .2s}
-.para-close{white-space:nowrap;flex-shrink:0}
-.para-close:hover{border-color:rgba(255,255,255,.4);color:#fff}
-
-.para-drawer-body{padding:24px}
-.para-section{margin-bottom:28px}
-.para-section-label{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--amber);margin-bottom:12px;
-  padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.07)}
-
-/* Metric cards row */
-.para-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:8px}
-.para-metric{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
-  border-radius:7px;padding:14px 12px;text-align:center}
-.para-metric-n{font-family:'Bricolage Grotesque',sans-serif;font-size:1.5rem;
-  color:#fff;line-height:1;margin-bottom:4px}
-.para-metric-n.green{color:#27C93F}
-.para-metric-n.amber{color:var(--amber)}
-.para-metric-n.red{color:#FF5F56}
-.para-metric-l{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;
-  text-transform:uppercase;color:rgba(255,255,255,.32)}
-
-/* Table */
-.para-table{width:100%;border-collapse:collapse;font-size:.77rem}
-.para-table th{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;
-  text-transform:uppercase;color:rgba(255,255,255,.35);padding:8px 10px;
-  border-bottom:1px solid rgba(255,255,255,.08);text-align:left;font-weight:400}
-.para-table td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.05);
-  color:rgba(255,255,255,.72);vertical-align:middle}
-.para-table tr:last-child td{border-bottom:none}
-.para-table tr:hover td{background:rgba(255,255,255,.03)}
-.status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;flex-shrink:0}
-.sd-green{background:#27C93F}.sd-amber{background:#FFBD2E}.sd-red{background:#FF5F56}
-.flag-pill{display:inline-block;padding:2px 8px;border-radius:3px;font-family:'JetBrains Mono',monospace;
-  font-size:.72rem;letter-spacing:.06em}
-.flag-ok{background:rgba(39,201,63,.15);color:#27C93F;border:1px solid rgba(39,201,63,.25)}
-.flag-warn{background:rgba(255,189,46,.15);color:#FFBD2E;border:1px solid rgba(255,189,46,.25)}
-.flag-err{background:rgba(255,95,86,.15);color:#FF5F56;border:1px solid rgba(255,95,86,.25)}
-
-/* Mini bar chart */
-.hour-chart{display:flex;align-items:flex-end;gap:4px;height:52px;margin-top:4px}
-.hour-bar-wrap{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1}
-.hour-bar{width:100%;border-radius:2px 2px 0 0;transition:opacity .2s;cursor:default}
-.hour-bar.night{background:rgba(255,95,86,.55)}
-.hour-bar.day{background:rgba(26,122,110,.6)}
-.hour-bar.peak{background:rgba(26,122,110,.9)}
-.hour-bar:hover{opacity:.75}
-.hour-label{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:rgba(255,255,255,.28);
-  writing-mode:horizontal-tb}
-.hour-chart-legend{display:flex;gap:14px;margin-top:8px}
-.hcl-item{display:flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;
-  font-size:.72rem;color:rgba(255,255,255,.38)}
-.hcl-dot{width:8px;height:8px;border-radius:2px}
-
-/* Error pattern list */
-.error-list{display:flex;flex-direction:column;gap:8px}
-.error-row{display:flex;align-items:center;gap:10px;padding:10px 12px;
-  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:5px}
-.error-bar-bg{flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
-.error-bar-fill{height:100%;border-radius:3px;background:rgba(255,95,86,.6)}
-.error-label{font-size:.73rem;color:rgba(255,255,255,.65);min-width:200px}
-.error-count{font-family:'JetBrains Mono',monospace;font-size:.72rem;
-  color:rgba(255,95,86,.8);min-width:40px;text-align:right}
-
-/* Shiny link banner */
-.shiny-banner{background:linear-gradient(135deg,rgba(13,43,78,.9),rgba(26,122,110,.3));
-  border:1px solid rgba(26,122,110,.35);border-radius:8px;padding:18px 20px;
-  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.shiny-banner-text{font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.6}
-.shiny-banner-text strong{color:rgba(255,255,255,.9)}
-.shiny-link{display:inline-flex;align-items:center;gap:7px;background:var(--teal);
-  color:#fff;padding:9px 18px;border-radius:4px;font-size:.78rem;font-weight:500;
-  letter-spacing:.04em;text-decoration:none;white-space:nowrap;transition:background .2s}
-.shiny-link:hover{background:var(--teal2)}
-
-/* ── READ MORE ──────────────────────────────────────────────────── */
-.rm-wrap{position:relative}
-.rm-hidden{display:none}
-.rm-toggle{display:inline;background:none;border:none;padding:0;cursor:pointer;
-  font-size:inherit;font-family:inherit;font-weight:500;color:var(--teal);
-  letter-spacing:.01em;transition:color .2s}
-.rm-toggle:hover{color:var(--teal2)}
-
-/* ── REVEAL ANIMATION ───────────────────────────────────────────── */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
 /* ── RESPONSIVE ─────────────────────────────────────────────────── */
@@ -566,10 +458,9 @@ a.para-expand-btn{text-decoration:none}
   section{padding:72px 24px}
   .hero-left{padding:48px 24px 32px}
   .hero-right{padding:36px 20px}
-  .terminal-wrap{max-width:100%}
-  .terminal-body{padding:16px 16px 18px}
-  .t-line{font-size:.72rem}
-  .t-line .t-key{min-width:96px}
+  .pd-card{max-width:100%}
+  .pd-head,.pd-progress,.pd-grid,.pd-cta-wrap,.pd-foot{padding-left:18px;padding-right:18px}
+  .pd-v{font-size:1.25rem}
   #why-reach{padding:40px 24px}
 }
 
@@ -694,31 +585,72 @@ html .u35{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing
   </div>
 
   <div class="hero-right">
-    <div class="terminal-wrap">
-      <div class="terminal-bar">
-        <div class="t-dot r"></div>
-        <div class="t-dot y"></div>
-        <div class="t-dot g"></div>
-        <span class="terminal-title">Survey Solutions · Paradata Monitor</span>
+    <div class="pd-card">
+      <div class="pd-head">
+        <span class="pd-eyebrow">Survey Solutions · Paradata Monitor</span>
+        <h3 class="pd-title">Northern Ghana Household Welfare Survey</h3>
+        <div class="pd-tags">
+          <span class="pd-tag">CAPI</span>
+          <span class="pd-tag">CAWI</span>
+          <span class="pd-tag pd-tag-demo">Simulated demo data</span>
+        </div>
       </div>
-      <div class="terminal-body">
-        <div class="t-line"><span class="t-key">Survey</span><span class="t-val">Northern Ghana Household Welfare Survey</span></div>
-        <div class="t-line"><span class="t-key">Mode</span><span class="t-val"><span class="t-badge">CAPI</span> &nbsp;<span class="t-badge amber">CAWI</span></span></div>
-        <hr class="t-divider"/>
-        <div class="t-line"><span class="t-key">Completed</span><span class="t-val">1,284 / 1,800 interviews</span></div>
-        <div class="t-line"><span class="t-key">Avg duration</span><span class="t-val">28 min 24 sec</span></div>
-        <div class="t-line"><span class="t-key">Night interviews</span><span class="t-val" style="color:#FFBD2E">⚠ 14 flagged (20:00–05:00)</span></div>
-        <div class="t-line"><span class="t-key">GPS captured</span><span class="t-val">1,201 / 1,284 (93.5 %) ✓</span></div>
-        <hr class="t-divider"/>
-        <div class="t-line"><span class="t-key">Interviewers</span><span class="t-val">15 active · 2 flagged</span></div>
-        <div class="t-line"><span class="t-key">Rejection rate</span><span class="t-val" style="color:#FFBD2E">3.7 % (threshold: 5 %)</span></div>
-        <div class="t-line"><span class="t-key">Validation errors</span><span class="t-val" style="color:#FF5F56">6.9 % high-error · avg 2.3 / interview</span></div>
-        <div class="t-line"><span class="t-key">Status</span><span class="t-val" style="color:#FFBD2E">● Simulated demo data</span></div>
+
+      <div class="pd-progress">
+        <div class="pd-prog-row">
+          <span class="pd-prog-label">Fieldwork completed</span>
+          <span class="pd-prog-val">71.3%</span>
+        </div>
+        <div class="pd-bar" role="img" aria-label="1,284 of 1,800 interviews completed, 71.3 percent"><span></span></div>
+        <div class="pd-prog-cap"><strong>1,284 of 1,800 interviews</strong><br/>Pace 38.6 a day against 43 needed. Projected finish about 6 Jun, target 4 Jun.</div>
       </div>
-      <a class="para-expand-btn" id="paraBtn" href="paradata-report.html">
-        <span>▦</span> View full paradata quality report
-        <span class="btn-arrow">›</span>
-      </a>
+
+      <div class="pd-grid">
+        <div class="pd-tile">
+          <span class="pd-k">HQ rejection rate</span>
+          <span class="pd-v">3.7%</span>
+          <div class="pd-gauge" role="img" aria-label="3.7 percent against a 5 percent threshold"><span></span><i></i></div>
+          <span class="pd-s">47 interviews · threshold 5%</span>
+          <span class="pd-pill pd-ok">✓ Within limit</span>
+        </div>
+        <div class="pd-tile">
+          <span class="pd-k">GPS captured</span>
+          <span class="pd-v">93.5%</span>
+          <span class="pd-s">1,201 of 1,284 interviews · 83 missing</span>
+          <span class="pd-pill pd-review">● Review</span>
+        </div>
+        <div class="pd-tile">
+          <span class="pd-k">High-error interviews</span>
+          <span class="pd-v">6.9%</span>
+          <span class="pd-s">89 interviews with more than 5 invalid answers · mean 2.3 per interview</span>
+          <span class="pd-pill pd-review">● Review</span>
+        </div>
+        <div class="pd-tile">
+          <span class="pd-k">Flagged night starts</span>
+          <span class="pd-v">14</span>
+          <span class="pd-s">Of 108 starts between 20:00 and 05:00 (8.4%)</span>
+          <span class="pd-pill pd-review">● Review</span>
+        </div>
+        <div class="pd-tile">
+          <span class="pd-k">Average duration</span>
+          <span class="pd-v">28.4 <small>min</small></span>
+          <span class="pd-s">Median 25.9 · 39.5% outside the 20–35 min range</span>
+          <span class="pd-pill pd-review">● Review</span>
+        </div>
+        <div class="pd-tile">
+          <span class="pd-k">Interviewers</span>
+          <span class="pd-v">15 <small>active</small></span>
+          <span class="pd-s">2 of 15 rated high risk (INT-04, INT-07)</span>
+          <span class="pd-pill pd-action">▲ Action</span>
+        </div>
+      </div>
+
+      <div class="pd-cta-wrap">
+        <a class="pd-cta" id="paraBtn" href="paradata-report.html">
+          <span>View full paradata quality report</span><span class="pd-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+      <div class="pd-foot">Round 1 snapshot, 23 May 2026 · Simulated data</div>
     </div>
     <div class="hero-stats-row" style="flex-direction:column;gap:10px">
       <div class="hstat hstat-wide">
