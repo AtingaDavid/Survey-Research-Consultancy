@@ -215,6 +215,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:62px;
 .pd-cta .pd-arrow{transition:transform .2s;font-size:1.1rem;line-height:1}
 .pd-cta:hover .pd-arrow{transform:translateX(4px)}
 .pd-foot{padding:8px 32px 22px;font-size:.74rem;color:#8FA5BE;text-align:center}
+/* Rows layout */
+.pd-card{max-width:520px}
+.pd-head{padding:24px 28px 18px}
+.pd-progress{grid-template-columns:72px 1fr;gap:20px;padding:14px 28px;border-bottom:1px solid rgba(255,255,255,.08)}
+.pd-ring{width:72px;height:72px}
+.pd-grid{grid-template-columns:1fr;gap:0;padding:2px 28px}
+.pd-tile{display:grid;grid-template-columns:128px 92px minmax(0,1fr) 96px;gap:12px;align-items:center;background:none;border:0;
+  border-bottom:1px solid rgba(255,255,255,.07);border-radius:0;padding:10px 0}
+.pd-tile:last-child{border-bottom:0}
+.pd-k{min-height:0;font-size:.66rem}
+.pd-v{margin:0;font-size:1.2rem}
+.pd-s{margin:0;font-size:.74rem}
+.pd-pill{margin:0;font-size:.68rem;padding:2px 9px;justify-self:end}
+.pd-cta-wrap{padding:12px 28px 6px}
+.pd-cta{padding:11px 16px;font-size:.88rem}
+.pd-foot{padding:8px 28px 16px;font-size:.72rem}
 @media(prefers-reduced-motion:reduce){.pd-card{animation:none;opacity:1}.pd-cta,.pd-cta .pd-arrow{transition:none}}
 
 /* Stat pills below terminal */
@@ -463,9 +479,9 @@ footer{background:#060E1A}
   .hero-right{padding:32px 16px}
   .pd-card{max-width:100%}
   .pd-head,.pd-progress,.pd-cta-wrap,.pd-foot{padding-left:20px;padding-right:20px}
-  .pd-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding:0 16px 4px}
-  .pd-progress{grid-template-columns:84px 1fr;gap:16px}.pd-ring{width:84px;height:84px}
-  .pd-tile{padding:16px 18px 18px}
+  .pd-grid{padding:2px 20px}
+  .pd-tile{grid-template-columns:1fr auto;gap:2px 10px}.pd-k{grid-column:1}.pd-s{grid-column:1}
+  .pd-progress{grid-template-columns:64px 1fr;gap:14px}.pd-ring{width:64px;height:64px}
   .pd-v{font-size:1.5rem}
   #why-reach{padding:40px 24px}
 }
